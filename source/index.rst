@@ -4,7 +4,7 @@
     contain the root `toctree` directive.
     
 
-Titre de votre travail persaonnel (changer dans `source/index.rst`)
+Titre de votre travail personnel (changer dans `source/index.rst`)
 =================================
 
 ..  toctree::

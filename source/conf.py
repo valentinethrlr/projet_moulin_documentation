@@ -43,8 +43,7 @@ extensions = [
     #"sphinxcontrib.spelling",
     "sphinxcontrib.bibtex",
     "sphinx.ext.graphviz",
-    "sphinx_proof"
-    
+    "sphinx_proof",
 ]
 
 # BibTeX 
@@ -97,7 +96,7 @@ html_theme_options = {
 
 
 ####### MyST configuration
-myst_enable_extensions = ["colon_fence", "dollarmath", "amsmath"]
+myst_enable_extensions = ["colon_fence", "dollarmath", "amsmath", "linkify", "deflist", "smartquotes", "tasklist"]
 
 
 # -- Options for LaTeX output ---------------------------------------------

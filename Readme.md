@@ -1,12 +1,15 @@
 
-# Template de base pour la documentation du projet
+# Documentation du projet
+
+Ce dépôt constitue une base (template) pour réaliser la documentation de votre
+projet en utilisant le système de documentation Sphinx, également utilisé pour documenter l'interpréteur Python.
 
 ## Éditer avec gitpod
 
 Pour éditer votre documentation avec gitpod.io, suivez les étapes suivantes
 
-- faites un fork de ce dépôt dans votre propre compte GitHub
-- ouvrez votre fork dans gitpod (rajouter https://gitpod.io/# avec l'URL du
+- Faites un fork de ce dépôt dans votre propre compte GitHub
+- Ouvrez votre fork dans gitpod (rajouter https://gitpod.io/# avec l'URL du
   dépôt dans GitHub), par exemple
   https://gitpod.io/#https://github.com/oci-2224/sphinx-template
 - Dans le dossier `source`, modifiez le fichier `infos.py` avec vos informations

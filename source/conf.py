@@ -48,7 +48,7 @@ extensions = [
 ]
 
 # BibTeX 
-bibtex_bibfiles = ['books.bib', 'online.bib', 'articles.bib']
+bibtex_bibfiles = ['online.bib']
 
 # spelling_lang='en_US'
 spelling_lang = "fr_FR"

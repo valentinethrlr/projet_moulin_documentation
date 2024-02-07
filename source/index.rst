@@ -1,34 +1,25 @@
-..  Travail de maturité - CSUD template
-    sphinx-quickstart on Fri Nov 19 16:13:20 2021.
-    You can adapt this file completely to your liking, but it should at least
-    contain the root `toctree` directive.
+..  Documentation du projet - CSUD template
     
 
-Titre de votre travail personnel (changer dans `source/index.rst`)
+Titre du projet (changer dans `source/index.rst`)
 =================================
 
 ..  toctree::
     :maxdepth: 2
     :caption: Table des matières
 
-    introduction.rst
-    conclusion.rst
+    plan.md
+    presentation.md
+    critique.md
     references.rst
 
-..
-    ..  toctree::
-        :maxdepth: 2
-        :caption: Table des matières
 
-        plan.rst
-        
+..  
+    toctree::
+    :maxdepth: 2
+    :caption: Tutoriel Sphinx
 
-..
-    ..  toctree::
-        :maxdepth: 2
-        :caption: Tutoriel Sphinx
-
-        tutoriel-sphinx/index.rst
+    tutoriel-sphinx/index.rst
 
 
 ..

@@ -4,9 +4,9 @@ class DocumentInfos:
     first_name = 'Prénom (infos.py)'
     last_name = 'Nom de famille (infos.py)'
     author = f'{first_name} {last_name}'
-    year = u'2023'
+    year = u'2024'
     month = u'Janvier'
-    seminary_title = u'Travail personnel OCI'
+    seminary_title = u'Projet OCI'
     tutor = u"Cédric Donner"
     release = "(Version finale)"
     repository_url = "https://github.com/<username>/<reponame>"

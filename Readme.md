@@ -3,7 +3,7 @@ run
 
 ## Installation
 
-ouvrir https://gitpod.io#https://github.com/oci-2224/sphinx-template/tree/template/2024
+ouvrir https://gitpod.io/#https://github.com/oci-2224/sphinx-template
 
 ## Configuration de Sphinx
 

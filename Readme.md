@@ -1,9 +1,9 @@
 run
-# Programmation dynamique
+# Template de base pour la documentation du projet
 
 ## Installation
 
-
+ouvrir https://gitpod.io#https://github.com/oci-2224/sphinx-template/tree/template/2024
 
 ## Configuration de Sphinx
 

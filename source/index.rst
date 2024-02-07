@@ -14,8 +14,7 @@ Titre du projet (changer dans `source/index.rst`)
     references.rst
 
 
-..  
-    toctree::
+..  toctree::
     :maxdepth: 2
     :caption: Tutoriel Sphinx
 

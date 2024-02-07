@@ -36,6 +36,10 @@ Nous allons apprendre à utiliser Linux ces prochains mois au cours d'OC.
 En attendant que ce tutoriel soit plus fourni, reportez-vous à la documentation
 officielle de MyST
 
+- https://mystmd.org/guide/typography
+
+Les pages suivantes peuvent également être utiles:
+
 - https://myst-parser.readthedocs.io/en/latest/sphinx/intro.html#intro-writing
 - https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html#
 - https://myst-parser.readthedocs.io/en/latest/syntax/optional.html

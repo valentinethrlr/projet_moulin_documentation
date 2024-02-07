@@ -33,7 +33,7 @@ livepdf:
 	watchmedo shell-command \
 		--patterns="*.png;*.rst;*.md;conf.py" \
 		--recursive \
-		--command='make tmpdf && make getpdf'	
+		--command='make thepdf && make getpdf'	
 surge:
 	surge build/html/ ini-prog.surge.sh
 
@@ -45,7 +45,7 @@ spelling:
 view:
 	$(PDFVIEWER) ./build/latex/$(TARGET).pdf
 
-tmpdf:
+thepdf:
 	make latex
 	# curl https://gist.githubusercontent.com/donnerc/ceb6e0045d108f41e702/raw/sphinxmanual.cls > build/latex/sphinxmanual.cls
 	# curl

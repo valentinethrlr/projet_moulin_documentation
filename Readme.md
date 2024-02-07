@@ -1,14 +1,24 @@
-run
+
 # Template de base pour la documentation du projet
+
+## Éditer avec gitpod
+
+Pour éditer votre documentation avec gitpod.io, suivez les étapes suivantes
+
+- faites un fork de ce dépôt dans votre propre compte GitHub
+- ouvrez votre fork dans gitpod (rajouter https://gitpod.io/# avec l'URL du
+  dépôt dans GitHub), par exemple
+  https://gitpod.io/#https://github.com/oci-2224/sphinx-template
+- Dans le dossier `source`, modifiez le fichier `infos.py` avec vos informations
+  personnelles adaptées pour votre projet
 
 ## Installation
 
-ouvrir https://gitpod.io/#https://github.com/oci-2224/sphinx-template
 
 ## Configuration de Sphinx
 
-Il faut insérer vos informations (auteur, titre, ... ) dans le fichier
-`source/tmconfig.py`. Ce fichier est ensuite automatiquement importé dans le module `conf.py` qui permet de configurer Sphinx.
+Le fichier `infos.py` avec vos informations personnelles vautomatiquement
+importé dans le module `conf.py` qui permet de configurer Sphinx.
 
 ## Génération des documents cibles
 
@@ -51,6 +61,8 @@ Le plus simple, pour démarrer, est de forker ce dépôt dans votre propre compt
 GitHub et cloner ce dernier sur votre machine locale ou dans un IDE en ligne tel
 que Gitpod.
 
+<!-- 
+
 ## Édition en ligne avec gitpod.io
 
 L'IDE en ligne Gitpod permet de disposer de machines virtuelles complètes sur
@@ -91,3 +103,5 @@ Voici les étapes à suivre:
 ### Sur Gitpod
 
 ### Sur Linux Ubuntu
+
+::: -->

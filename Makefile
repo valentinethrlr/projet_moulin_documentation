@@ -26,6 +26,8 @@ help:
 livehtml:
 	sphinx-autobuild "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
+live: livehtml
+
 
 livepdf:
 	watchmedo shell-command \

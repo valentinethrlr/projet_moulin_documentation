@@ -1,3 +1,4 @@
+---
 # Commands to start on workspace startup
 image: gitpod/workspace-python-3.8
 tasks:
@@ -10,3 +11,6 @@ ports:
 vscode:
   extensions:
     - chrisjsewell.myst-tml-syntax
+    - MS-CEINTL.vscode-language-pack-fr
+    - streetsidesoftware.code-spell-checker-french
+    - streetsidesoftware.code-spell-checker-french-reforme

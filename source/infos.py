@@ -1,15 +1,15 @@
 class DocumentInfos:
 
-    title = u'Titre de votre travail personnel (modifier dans `source/infos.py`)'
-    first_name = 'Prénom (infos.py)'
-    last_name = 'Nom de famille (infos.py)'
+    title = u'Jeu du moulin'
+    first_name = 'Valentine'
+    last_name = 'Thürler'
     author = f'{first_name} {last_name}'
     year = u'2024'
-    month = u'Janvier'
+    month = u'Avril'
     seminary_title = u'Projet OCI'
     tutor = u"Cédric Donner"
     release = "(Version finale)"
-    repository_url = "https://github.com/<username>/<reponame>"
+    repository_url = "https://github.com/<valentinethrlr>/<projet-moulin>"
 
     @classmethod
     def date(cls):

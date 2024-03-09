@@ -1,8 +1,8 @@
 ..  Documentation du projet - CSUD template
     
 
-Titre du projet (changer dans `source/index.rst`)
-=================================
+Jeu du moulin 
+=============
 
 ..  toctree::
     :maxdepth: 2

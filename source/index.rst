@@ -10,6 +10,7 @@ Jeu du moulin
 
     plan.md
     presentation.md
+    manuel.md
     critique.md
     references.rst
 

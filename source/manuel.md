@@ -31,5 +31,10 @@ Ensuite, pour déplacer un pion, il faut cliquer sur celui-ci, une animation ind
 
 Lorsqu'il y a un moulin, les points qu'il est possible d'éliminer sont entourés de rouge.
 
-
+```{figure} images/moulin.png
+---
+width: 100%
+---
+Situation lors d'un moulin
+```
 

@@ -24,12 +24,12 @@ Options de création de partie
 ```
 Si la partie est créée en ligne, un ID de 6 chiffres est créé.
 
-Pour rejoindre cette partie, il suffit à l'adversaire de cliquer sur le bouton "rejoindre une partie" et de donner l'ID de cette partie.
+Pour rejoindre cette partie, l'adversaire doit cliquer sur le bouton "rejoindre une partie" et de donner l'ID de cette partie.
 
 Lorsque la partie commence, ce sont les blancs qui jouent en premier. Il est a tout d'abord une phase de mise en place du jeu, durant laquelle les utilisateurs peuvent cliquer sur la case sur laquelle ils souhaitent placer leur pion.
 Ensuite, pour déplacer un pion, il faut cliquer sur celui-ci, une animation indique qu'il a bien été sélectionné. Il faut ensuite cliquer sur la case de destination. 
 
-Lorsqu'il y a un moulin, les points qu'il est possible d'éliminer sont entourés de rouge.
+Lorsqu'il y a un moulin, les pions qu'il est possible d'éliminer sont entourés de rouge. Pour ce faire, il suffit de cliquer sur le pion désiré.
 
 ```{figure} images/moulin.png
 ---
@@ -37,4 +37,6 @@ width: 100%
 ---
 Situation lors d'un moulin
 ```
+Lorsque la partie est terminée, un message désignant le nom du gagnant apparaît.
 
+Finalement, une page avec un rappel des règles est disponible, sur la page d'accueil du site.

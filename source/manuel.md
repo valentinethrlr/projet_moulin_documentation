@@ -1,4 +1,4 @@
-(manuel) = 
+(manuel)= 
 
 # Manuel utilisateur
 

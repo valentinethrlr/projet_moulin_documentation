@@ -1,0 +1,114 @@
+<body>
+    <div class="centerVert" id="optionsCreer">
+        <div class="option">
+            <div class="option-ecriture">Durée par joueur</div>
+            <button id="duree5" class="option-btn" onclick="duree(5)">5 min</button>
+            <button id="duree10" class="option-btn" onclick="duree(10)">10 min</button>
+            <button id="duree0" class="option-btn" onclick="duree(0)">∞ min</button>
+        </div>
+
+        <div class="option" style="margin-top: 30px;">
+            <div class="option-ecriture">Pions du créateur</div>
+            <button id="couleurb" class="option-btn" onclick="couleur('b')">Blanc</button>
+            <button id="couleurn" class="option-btn" onclick="couleur('n')">Noir</button>
+            <button id="couleura" class="option-btn" onclick="couleur('a')">Aléatoire</button>
+        </div>
+
+        <div style="display: flex;">
+            <button class="jouer-btn" onclick='creerLigne()' style="margin-right: 5px;">CREER UNE PARTIE EN LIGNE</button>
+            <button class="jouer-btn" onclick='creerAppareil(); tourJoue()' style="margin-left: 5px;">JOUER SUR L'APPAREIL</button>
+        </div>
+
+        <h3 id="incompletude" style="display: none;">Veuillez choisir vos options.</h3>
+    </div>
+
+    <div class="centerVert" id="creationId" style="display: none;">
+        <h2>En attente de l'adversaire...</h2>
+        <h2 id="votreId">L'ID de votre partie est: </h2>
+    </div>
+    
+    <div id="jeuTotal" style="display: none;">
+        <h1 id="indication"></h1>
+
+        <div id="pionsBlancs" style="height: 50px;">
+            <div id="pb1" class="pionB" onclick="selectionne('pb1'); selectionneLigne('pb1');"></div>
+            <div id="pb2" class="pionB" onclick="selectionne('pb2'); selectionneLigne('pb2');"></div>
+            <div id="pb3" class="pionB" onclick="selectionne('pb3'); selectionneLigne('pb3');"></div>
+            <div id="pb4" class="pionB" onclick="selectionne('pb4'); selectionneLigne('pb4');"></div>
+            <div id="pb5" class="pionB" onclick="selectionne('pb5'); selectionneLigne('pb5');"></div>
+            <div id="pb6" class="pionB" onclick="selectionne('pb6'); selectionneLigne('pb6');"></div>
+            <div id="pb7" class="pionB" onclick="selectionne('pb7'); selectionneLigne('pb7');"></div>
+            <div id="pb8" class="pionB" onclick="selectionne('pb8'); selectionneLigne('pb8');"></div>
+            <div id="pb9" class="pionB" onclick="selectionne('pb9'); selectionneLigne('pb9');"></div>
+            <div id="pnElimine1" class="pionN" style="visibility: hidden;"></div>
+            <div id="pnElimine2" class="pionN" style="visibility: hidden;"></div>
+            <div id="pnElimine3" class="pionN" style="visibility: hidden;"></div>
+            <div id="pnElimine4" class="pionN" style="visibility: hidden;"></div>
+            <div id="pnElimine5" class="pionN" style="visibility: hidden;"></div>
+            <div id="pnElimine6" class="pionN" style="visibility: hidden;"></div>
+            <div id="pnElimine7" class="pionN" style="visibility: hidden;"></div>
+            <h3 id="tempsb" class="temps" style="display: none;">00:00</h3>
+        </div>
+
+        
+        <div id ="grille" class="centerGrille">
+        <img src="./moulin_colors.svg" usemap="#plateau" width="500" height="500" alt="plateau">
+
+        <map name="plateau">
+            <area id="case0"  shape="circle" coords="-5,20,30" onclick="joue(0); joueLigne(0);">
+            <area id="case1"  shape="circle" coords="234,20,30" onclick="joue(1); joueLigne(1);">
+            <area id="case2"  shape="circle" coords="474,20,30" onclick="joue(2); joueLigne(2);">
+
+            <area id="case3"  shape="circle" coords="74,100,30" onclick="joue(3); joueLigne(3);">
+            <area id="case4"  shape="circle" coords="234,100,30" onclick="joue(4); joueLigne(4);">
+            <area id="case5"  shape="circle" coords="395,100,30" onclick="joue(5); joueLigne(5);">
+
+            <area id="case6"  shape="circle" coords="154,180,30" onclick="joue(6); joueLigne(6);">
+            <area id="case7"  shape="circle" coords="234,180,30" onclick="joue(7); joueLigne(7);">
+            <area id="case8"  shape="circle" coords="314,180,30" onclick="joue(8); joueLigne(8);">
+
+            <area id="case9"  shape="circle" coords="-5,260,30" onclick="joue(9); joueLigne(9);">
+            <area id="case10" shape="circle" coords="74,260,30" onclick="joue(10); joueLigne(10);">
+            <area id="case11" shape="circle" coords="154,260,30" onclick="joue(11); joueLigne(11);">
+            <area id="case12" shape="circle" coords="314,260,30" onclick="joue(12); joueLigne(12);">
+            <area id="case13" shape="circle" coords="395,260,30" onclick="joue(13); joueLigne(13);">
+            <area id="case14" shape="circle" coords="474,260,30" onclick="joue(14); joueLigne(14);">
+
+            <area id="case15" shape="circle" coords="154,340,30" onclick="joue(15); joueLigne(15);">
+            <area id="case16" shape="circle" coords="234,340,30" onclick="joue(16); joueLigne(16);">
+            <area id="case17" shape="circle" coords="314,340,30" onclick="joue(17); joueLigne(17);">
+
+            <area id="case18" shape="circle" coords="74,420,30" onclick="joue(18); joueLigne(18);">
+            <area id="case19" shape="circle" coords="234,420,30" onclick="joue(19); joueLigne(19);">
+            <area id="case20" shape="circle" coords="395,420,30" onclick="joue(20); joueLigne(20);">
+
+            <area id="case21" shape="circle" coords="-5,500,30" onclick="joue(21); joueLigne(21);">
+            <area id="case22" shape="circle" coords="234,500,30" onclick="joue(22); joueLigne(22);">
+            <area id="case23" shape="circle" coords="474,500,30" onclick="joue(23); joueLigne(23);">
+        </map>
+        </div>
+
+        <div id="pionsNoirs" style="height: 30px;">
+            <div id="pn1" class="pionN" onclick="selectionne('pn1'); selectionneLigne('pn1');"></div>
+            <div id="pn2" class="pionN" onclick="selectionne('pn2'); selectionneLigne('pn2');"></div>
+            <div id="pn3" class="pionN" onclick="selectionne('pn3'); selectionneLigne('pn3');"></div>
+            <div id="pn4" class="pionN" onclick="selectionne('pn4'); selectionneLigne('pn4');"></div>
+            <div id="pn5" class="pionN" onclick="selectionne('pn5'); selectionneLigne('pn5');"></div>
+            <div id="pn6" class="pionN" onclick="selectionne('pn6'); selectionneLigne('pn6');"></div>
+            <div id="pn7" class="pionN" onclick="selectionne('pn7'); selectionneLigne('pn7');"></div>
+            <div id="pn8" class="pionN" onclick="selectionne('pn8'); selectionneLigne('pn8');"></div>
+            <div id="pn9" class="pionN" onclick="selectionne('pn9'); selectionneLigne('pn9');"></div>
+            <div id="pbElimine1" class="pionB" style="visibility: hidden;"></div>
+            <div id="pbElimine2" class="pionB" style="visibility: hidden;"></div>
+            <div id="pbElimine3" class="pionB" style="visibility: hidden;"></div>
+            <div id="pbElimine4" class="pionB" style="visibility: hidden;"></div>
+            <div id="pbElimine5" class="pionB" style="visibility: hidden;"></div>
+            <div id="pbElimine6" class="pionB" style="visibility: hidden;"></div>
+            <div id="pbElimine7" class="pionB" style="visibility: hidden;"></div>
+            <h3 id="tempsn" class="temps" style="display: none;">00:00</h3>
+        </div>
+
+    </div>
+
+</body>
+</html>

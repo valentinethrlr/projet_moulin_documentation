@@ -47,10 +47,42 @@ Une fois que tous les pions ont été mis en place, la phase de déplacement des
 
 ### Détail du code
 
-Le fichier principal d'implémentation du jeu local est <emp>jeu.js</emp>.
+Le fichier principal d'implémentation du jeu local est <em>jeu.js</em>.
 
 #### Sélection des options de jeu
 
 La première étape consiste à prendre en compte les options de jeu choisies par le créateur de la partie. 
+
+Pour ce faire, l'option de couleur et de temps sont sauvegardés à partir d'une fonction <em>onclick</em> définie sur la page HTML. Si le temps choisi est de 5 minutes, un <em>5</em> sera mis en paramètre de la fonction. Pour 10 minutes le paramètre deviendra <em>10</em> et <em>0</em> si le temps de jeu voulu est infini. La même idée est utilisée pour les couleurs, si le créateur de la partie souhaite avec des pions blancs, le paramètre donné sera <em>b</em>, un <em>n</em> sera donné pour le choix d'avoir des pions noirs et un <em>a</em> si l'option aléatoire est choisie.
+
+Voici le code HTML qui permet de réaliser cela:
+
+```{literalinclude} /src/plateau.html
+:language: html
+:caption: /src/plateau.html
+:linenos: true
+:lines: 3-15
+```
+
+Les fonctions <em>duree(t)</em> et <em>couleur(c)</em> enregistre simplement les options choisies dans des variables globales <em>dureeJoueur</em> et <em>couleurJoueur</em>. 
+
+#### Variables globales
+
+Afin de faciliter l'implémentation du jeu, plusieurs variables globales ont été définies.
+
+Tout d'abord, la variable <em>plateau</em> modélise la plateau à chaque instant du jeu, en enregistrant la position des pions qui s'y trouve. Dans cette liste, l'élément à l'index n correspond au pion se trouvant sur la case de numéro d'identification n.
+
+Les déplacements possibles sur le plateau d'une case à une autre sont modélisés par toutes les variables zone<em>n</em>. Il s'agit d'une liste, comprenant tous les numéros des cases sur lesquels il est possible de se déplacer à partir de la case <em>n</em>.
+
+La figure ci-dessous illustre la <em>zone0</em> et la <em>zone19</em>.
+
+```{figure} images/zones.png
+---
+width: 100%
+---
+Exemples de zones: zone0 et zone19
+```
+
+En ce qui concerne le déroulement du jeu, la variable globale <em>joueur_actuel</em> désigne le joueur qui doit jouer pendant le tour actuel, tandis que <em>autre_joueur</em> désigne le joueur en attente.
 
 

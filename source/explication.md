@@ -83,6 +83,59 @@ width: 100%
 Exemples de zones: zone0 et zone19
 ```
 
+La liste <em>moulins</em> présente tous les triplets de cases sur lesquels il est possible d'avoir un moulin. Nous constatons donc qu'il y a au total seize dispositions de moulin différentes.
+
+Cette liste est liée à <em>moulinsPlateau</em>, qui à une position i indique si le triplet de cases à l'indexe i de <em>moulins</em> est occupée par un moulin. Ceci permet de garder en mémoire les moulins présents sur la plateau même lorsqu'ils ont été créées durant les tours de jeu antérieur, sans qu'ils soient à nouveau détectés à chaque nouveau tour.
+
+Les deux variables <em>nbBElimine</em> et <em>nbNElimine</em> sauvegarde le nombre de pions blancs, respectivement noirs, qui ont déjà été éliminés durant la partie.
+
+La variable <em>mouvementsSansPrise</em> permet ensuite de prendre en compte la règle du jeu qui stipule que lorsqu'il y a 50 mouvements sans aucune prise, la partie est considérée comme nulle.
+
 En ce qui concerne le déroulement du jeu, la variable globale <em>joueur_actuel</em> désigne le joueur qui doit jouer pendant le tour actuel, tandis que <em>autre_joueur</em> désigne le joueur en attente.
 
+
+#### <em>tourJoue()</em>
+
+Cette fonction permet d'incrémenter les tours durant la partie. Une fois qu'un des joueurs a terminé son action de jeu, c'est l'autre qui devient le <em>joueur_actuel</em>. Une indication avec la couleur du joueur qui doit réaliser un mouvement s'affiche alors au-dessus du plateau. Finalement, si une option de durée de jeu a été choisie, le chronomètre du joueur suivant se déclenche. Les variables <em>tempsb</em> et <em>tempsn</em> indiquent le temps de jeu restant du joueur blanc, respectivement noir.
+
+La fonction de chronométrage, <em>timer(temps)</em> prend donc en paramètre le temps de jeu restant du joueur et décrémente toutes les secondes cette variable grâce à la fonction JS <em>setInterval()</em>. Lors d'une décrémentation, l'horloge présente sur la page de jeu et implémentée en HTML est également modifiée.
+
+
+#### <em>joue(numeroCase)</em>
+
+Cette fonction s'occupe de tout ce qui est lié à la sélection d'une case du plateau. Lorsqu'une case est sélectionnée par un utilisateur, cette fonction s'exécute avec en paramètre le numéro d'identification de la case choisie.
+
+Lors des 18 premiers tours de jeu (phase de mise en place), elle permet aux joueurs de poser tour à tour leurs pions sur le plateau.
+
+```{literalinclude} /src/jeu.js
+:language: js
+:caption: /src/jeu.js
+:linenos: true
+:lines: 178-195
+```
+
+Cette partie du code s'appuie principalement sur le choix des noms d'id des pions dans le code HTML. Ils suivent la construction <em>p</em> + <em>b</em> ou <em>n</em> (en fonction de la couleur du pion) + un numéro d'identification.
+
+Le déplacement des pions jusqu'à une case se fait par la fonction <em>mouvement(pion, case)</em>.
+
+DEPLACEMENT DES PIONS
+
+De la même manière, la fonction <em>joue(case)</em> permet de déplacer les pions durant la phase de jeu. S'il un joueur n'a plus que 3 pions, il peut se déplacer comme il le souhaite sur le plateau; il n'y a donc aucune condition avant le mouvement.
+
+En revanche, lors des tours "normaux", une condition vérifie que la case choisie se situe bien dans la <em>zone</em> de la case sur laquelle se trouve le pion à déplacer.
+
+```{literalinclude} /src/jeu.js
+:language: js
+:caption: /src/jeu.js
+:linenos: true
+:lines: 215-221
+```
+
+Dans cette condition, l'emplacement du pion est tout d'abord recherchée par l'expression <em>plateau.indexOf(pion_actuel)</em>. Ce numéro de case est accolé au <em>zone</em> à l'aide d'une template-string, puis cette string est évaluée en tant que variable par la fonction eval(). Finalement, il est vérifié que la case sélectionne se trouve dans cette zone avec la méthode <em>includes</em>.
+
+Le deuxième rôle de <em>joue(numeroCase)</em> est de contrôler si un moulin a été formé immédiatement après le fin du tour du joueur (c'est-à-dire lorsqu'il aura poser son pion). Ce contrôle ne s'effectue qu'à partir du cinquième tour, étant donné qu'il est impossible de former un moulin avant.
+Pour ce faire, toutes les configurations possibles de moulin (présentées dans <em>moulins</em>) sont parcourues et il est à chaque fois vérifié si les pions présents sur ces triplets sont identiques. Si c'est effectivement le cas, il est contrôlé que le moulin vient d'être formé, donc qu'il ne se situe pas encore dans la liste <em>moulinsPlateau</em>. Si ce n'est pas le cas, les contrôles continuent jusqu'à la fin de la liste des triplets et la configuration est indiqué comme vide dans <em>moulinsPlateau</em>. Ceci permet de prendre en compte le cas où un moulin est ouvert, et donc potentiellement à nouveau formable.
+
+S'il y a effectivement un moulin, un message est affiché au-dessus du plateau. Le moulin est enregistrer dans <em>moulinsPlateau</em>, le type de moulin dans <em>typeMoulin</em> et le nombre de mouvements sans prise est remis à zéro.
+La fonction <em>listePossible</em> permet de créer la liste des pions qu'il sera possible d'éliminer à l'adversaire, ceux qui ne sont dans aucun moulin. Si tous les pions sont dans des moulins, tous les pions adverses sur le plateau sont éliminables. Les éléments présents dans cette liste sont animés pour être plus facilement repérables. 
 

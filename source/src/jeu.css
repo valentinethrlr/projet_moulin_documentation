@@ -1,0 +1,9 @@
+@keyframes selectionner {
+    to {outline: 2.5px solid #FF686B;}
+}
+
+.animationSelection {
+    animation-name: selectionner;
+    animation-duration: 0.75s;
+    animation-iteration-count: infinite;
+}

@@ -116,9 +116,9 @@ Lors des 18 premiers tours de jeu (phase de mise en place), elle permet aux joue
 
 Cette partie du code s'appuie principalement sur le choix des noms d'id des pions dans le code HTML. Ils suivent la construction <em>p</em> + <em>b</em> ou <em>n</em> (en fonction de la couleur du pion) + un numéro d'identification.
 
-Le déplacement des pions jusqu'à une case se fait par la fonction <em>mouvement(pion, case)</em>.
+Le déplacement des pions jusqu'à une case se fait par la fonction <em>deplacement(pion, case)</em>.
 
-DEPLACEMENT DES PIONS
+Cette fonction commence par appeler une autre fonction <em>mouvement(pion, case)</em>, qui code explicitement le déplacement du pion sur la case en indiquer les nouvelles coordonnées que devra prendre ce dernier. Ensuite, elle actualise la variable <em>plateau</em>.
 
 De la même manière, la fonction <em>joue(case)</em> permet de déplacer les pions durant la phase de jeu. S'il un joueur n'a plus que 3 pions, il peut se déplacer comme il le souhaite sur le plateau; il n'y a donc aucune condition avant le mouvement.
 
@@ -138,4 +138,36 @@ Pour ce faire, toutes les configurations possibles de moulin (présentées dans 
 
 S'il y a effectivement un moulin, un message est affiché au-dessus du plateau. Le moulin est enregistrer dans <em>moulinsPlateau</em>, le type de moulin dans <em>typeMoulin</em> et le nombre de mouvements sans prise est remis à zéro.
 La fonction <em>listePossible</em> permet de créer la liste des pions qu'il sera possible d'éliminer à l'adversaire, ceux qui ne sont dans aucun moulin. Si tous les pions sont dans des moulins, tous les pions adverses sur le plateau sont éliminables. Les éléments présents dans cette liste sont animés pour être plus facilement repérables. 
+
+L'animation est réalisée en CSS. 
+
+```{literalinclude} /src/jeu.css
+:language: css
+:caption: /src/jeu.css
+:linenos: true
+:lines: 1-9
+```
+
+Le décorateur <em>@keyframes</em> indique l'état final de l'objet, en l'occurrence, il obtiendra un bord rouge. Ensuite, la propriété <em>.animationSelection</em> indique la durée de l'animation, qui est dans ce cas de 0.75 secondes.
+
+S'il n'y a pas de moulin au triplet contrôlé, cet emplacement est marqué <em>null</em> dans la liste <em>moulinsPlateau</em>. Ceci permet également de prendre en compte les cas de moulins existants qui ont été détruits, mais qui pourraient être reformés par la suite.
+
+Une fois de le joueur à fini son tour (c'est-à-dire que son pion a été déplacé), la fonction <em>tourJoue()</em> est exécutée.
+
+#### <em>selectionne(pionId)</em>
+
+Cette fonction gère tout ce qui concerne la sélection d'un pion. Elle est appelée lorsqu'un utilisateur clique sur un pion, et reçoit en paramètre l'identifiant de ce dernier.
+
+En première lieu, elle contrôle s'il y a eu un moulin, afin de permet à l'utilisateur de supprimer un pion de son adversaire. La première condition vérifiée dans ce cas est qu'il soit bien possible de supprimer le pion sélectionné. Pour ce faire, nous pouvons tirer profit de la liste <em>pionsPossibles</em> qui avait été crée dans la fonction <em>joue(case)</em> lorsque le moulin avait été repéré, afin de justement mettre en évidence les pions qu'il est possible de supprimer. 
+Une autre variable globale initialisée dans <em>jou(case)</em> est également réutilisée ici. Il s'agit de la situation particulière où tous les pions adverses se trouvent dans un moulin, et qu'il est donc possible d'éliminer n'importe quel pion. Dans ce cas, la variable <em>supprimeDansMoulin</em> prend la valeur <em>true</em>. Tous les moulins contenant le pion éliminé seront alors supprimés de la liste <em>moulinsPlateau</em>.
+
+Si le pion peut bien être éliminé, la fonction <em>elimine(pionId)</em> est appelée. Elle masque le pion sur le plateau et révèle un pion du côté du joueur qui a formé le moulin.
+
+Finalement, la fonction enlève l'animation de tous les pions présents sur le plateau, met à jour la liste <em>plateau</em> et <em>typeMoulin</em>, puis permet à l'autre joueur de jouer en appelant <em>tourJoue()</em>.
+
+Le deuxième rôle de cette fonction est de sélectionner un pion afin de le déplacer. Avant tout, toutes les animations potentielles des pions sont supprimées. Ceci permet par exemple à un joueur de sélectionner un pion, puis de changer d'avis avant de cliquer sur une case et de choisir un autre pion. 
+
+Il y a ensuite un contrôle qui vérifie que le pion désiré appartient bien au joueur qui doit faire un mouvement. Le pion est alors enregistré dans la variable globale <em>pion_actuel</em>. Après cela, la fonction <em>joue(case)</em> pourra être appelée.
+
+Finalement, cette fonction contrôle les fins de partie. Elle vérifie qu'aucun joueur n'ait perdu plus de 6 pions. Si c'est le cas, la fonction <em>finDePartie(gagnant)</em> est appelée. Cette dernière masque tous les éléments sur la page, puis affiche le nom du vainqueur.
 

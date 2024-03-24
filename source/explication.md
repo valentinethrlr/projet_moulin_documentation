@@ -6,9 +6,8 @@ Le back-end se compose en deux parties. Il y a d'une part les fichiers qui s'occ
 
 Le front-end quant à lui est rédigé en HTML et CSS.
 
-## Parties en local
 
-### Le plateau
+## Le plateau
 
 Le plateau a été dessiné sur https://www.drawio.com/, puis converti en fichier svg. L'avantage est qu'il s'agit d'un format vectoriel, c'est-à-dire que l'image est stockée via des formules mathématiques, qui modélisent les différents points et lignes dans une grille.
 Il n'y a donc pas de perte de résolution lors d'agrandissements ou de réductions de l'image. {cite:p}`format_svg`
@@ -37,7 +36,7 @@ Les coordonnées des zones de sélection ont été définies à partir des coord
 Les pions quant à eux sont directement des éléments HTML. De la même manière, chacun d'entre eux est numéroté, de 1 à 9. Ici, la numérotation commence par 1, car ceci permettra par la suite de simplifier le code de la mise en place du jeu. 
 
 
-### Idée d'algorithme de jeu
+## Idée d'algorithme de jeu
 
 Une partie se découpe en deux phases principales. 
 
@@ -45,7 +44,8 @@ Il y a tout d'abord une phase de mise en place, durant laquelle chaque joueur po
 
 Une fois que tous les pions ont été mis en place, la phase de déplacement des pions commencent. A tour de rôle, les joueurs effectuent deux actions différentes qui seront implémentées dans deux fonction différentes: sélectionner un pion et sélectionner une case sur laquelle ils souhaient déplacer ce pion.
 
-### Détail du code
+## Parties en local
+
 
 Le fichier principal d'implémentation du jeu local est <em>jeu.js</em>.
 
@@ -171,3 +171,6 @@ Il y a ensuite un contrôle qui vérifie que le pion désiré appartient bien au
 
 Finalement, cette fonction contrôle les fins de partie. Elle vérifie qu'aucun joueur n'ait perdu plus de 6 pions. Si c'est le cas, la fonction <em>finDePartie(gagnant)</em> est appelée. Cette dernière masque tous les éléments sur la page, puis affiche le nom du vainqueur.
 
+## Parties en ligne
+
+Pour les parties en ligne, la technologie utilisée est le node JS, avec le concept de web sockets.

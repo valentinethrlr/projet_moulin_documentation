@@ -24,9 +24,9 @@ Options de création de partie
 ```
 Si la partie est créée en ligne, un ID de 6 chiffres est généré et affiché à l'écran.
 
-Pour rejoindre cette partie, l'adversaire doit cliquer sur le bouton "rejoindre une partie" et entrer cette même ID dans le champ correspondant.
+Pour rejoindre cette partie, l'adversaire doit cliquer sur le bouton <em>rejoindre une partie</em> et entrer cette même ID dans le champ correspondant.
 
-Lorsque la partie commence, il est a tout d'abord une phase de mise en place du jeu, durant laquelle les utilisateurs peuvent cliquer sur la case sur laquelle ils souhaitent placer leur pion.
+Lorsque la partie commence, il y a tout d'abord une phase de mise en place du jeu, durant laquelle les utilisateurs peuvent cliquer sur la case sur laquelle ils souhaitent placer leur pion.
 Ensuite, pour déplacer un pion, il suffit cliquer sur celui-ci. Une animation indique qu'il a bien été sélectionné. Il faut ensuite cliquer sur la case de destination. 
 
 Lorsqu'il y a un moulin, les pions qu'il est possible d'éliminer sont entourés de rouge. Pour supprimer un pion adverse, il faut alors cliquer dessus.

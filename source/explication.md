@@ -2,7 +2,7 @@
 
 # Explication du fonctionnement du code
 
-Le back-end se compose en deux parties. Il y a d'une part les fichiers qui s'occupent des parties en local, rédigés en JavaScript, et d'autre part ceux qui s'occupent des parties en ligne également en JavaScript et en utilisant les fonctions de node.js.
+Le back-end se compose de deux parties. Il y a d'une part les fichiers qui s'occupent des parties en local, rédigés en JavaScript, et d'autre part ceux qui s'occupent des parties en ligne également en JavaScript et en utilisant les fonctions de node.js.
 
 Le front-end quant à lui est rédigé en HTML et CSS.
 
@@ -31,9 +31,9 @@ Une zone <em>area</em> entoure chaque case, pour qu'il soit possible de les sél
 :lines: 57-60
 ```
 
-Les coordonnées des zones de sélection ont été définies à partir des coordonnées des cases données par le fichier svg. Cette zone est plus grande que la case elle-même, dans le but de rendre le jeu plus agréable à utiliser et éviter à l'utilisateur de devoir cliquer exactement sur les pixels de la case..
+Les coordonnées des zones de sélection ont été définies à partir des coordonnées des cases données par le fichier svg. Cette zone est plus grande que la case elle-même, dans le but de rendre le jeu plus agréable à utiliser et éviter à l'utilisateur de devoir cliquer exactement sur les pixels de la case.
 
-Les pions quant à eux sont des éléments HTML. De la même manière, chacun d'entre eux est numéroté, de 1 à 9. Ici, la numérotation commence par 1, car ceci permettra par la suite de simplifier le code de la mise en place du jeu. 
+Les pions quant à eux sont des éléments HTML. Chacun d'entre eux a comme identification un <em>p</em> (pour pion) suivi d'un <em>b</em> ou <em>n</em> (si le pion est blanc, respectivement n) et un numéro de 1 à 9. Ici, la numérotation commence par 1, car ceci permettra par la suite de simplifier le code de la mise en place du jeu. 
 
 
 ## Idée d'algorithme de jeu

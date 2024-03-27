@@ -179,10 +179,22 @@ Finalement, cette fonction contrôle les fins de partie. Elle vérifie qu'aucun 
 
 Pour les parties en ligne, la technologie utilisée est le node JS, avec le concept de web sockets.
 
-### Fonctionnement des webs sockets
+### Utilité des WebSockets
 
-L'idée est de créer une connection entre le serveur et le client. {cite:p}`socket_video`
+Les sources utilisées pour rédiger cette partie sont: {cite:p}`socket_video`, {cite:p}`socket_page1`, {cite:p}`socket_page2`
 
-Pour ce faire, nous ouvrons un port du serveur, pour mon projet, j'ai ouvert le port X, car le propriétaire du serveur m'a indiqué qu'il était libre. A partir de là, le serveur est mis "sur écoute".
+L'idée est de créer une connection bidirectionnelle entre le serveur et le client, qui sont alors appelés des "sockets". 
+L'avantage et que le client et le serveur pourront ensuite s'envoyer des informations en temps réel, sans que le client doive constamment faire de demandes, c'est-à-dire sans devoir rafraîchir la page. 
 
-Ensuite du côté client, il faut créer un p
+```{figure} images/websocket-handshake.png
+---
+width: 100%
+---
+WebSocket en schéma, tiré de {cite:p}`socket_page2`
+```
+
+Afin d'établir cette connexion, il y a tout d'abord une phase dite de "handshake".
+
+Du côté du serveur, un port doit être ouvert. Pour ce projet, il s'agit du port X, car le propriétaire du serveur m'a indiqué qu'il était libre. A partir de là, le serveur est mis "sur écoute".
+
+Ensuite, le client envoie une première requête vers ce port, pour demander une connection. Si le serveur accepte cette demande, une liaison est établie entre les deux.

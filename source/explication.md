@@ -1,5 +1,9 @@
 (explication)=
 
+# Caractéristique du serveur
+
+Ce projet est directement codé sur un serveur physique Dell PowerEdge.
+
 # Explication du fonctionnement du code
 
 Le back-end se compose de deux parties. Il y a d'une part les fichiers qui s'occupent des parties en local, rédigés en JavaScript, et d'autre part ceux qui s'occupent des parties en ligne également en JavaScript et en utilisant les fonctions de node.js.
@@ -174,3 +178,11 @@ Finalement, cette fonction contrôle les fins de partie. Elle vérifie qu'aucun 
 ## Parties en ligne
 
 Pour les parties en ligne, la technologie utilisée est le node JS, avec le concept de web sockets.
+
+### Fonctionnement des webs sockets
+
+L'idée est de créer une connection entre le serveur et le client. {cite:p}`socket_video`
+
+Pour ce faire, nous ouvrons un port du serveur, pour mon projet, j'ai ouvert le port X, car le propriétaire du serveur m'a indiqué qu'il était libre. A partir de là, le serveur est mis "sur écoute".
+
+Ensuite du côté client, il faut créer un p

@@ -195,15 +195,51 @@ WebSocket en schéma, tiré de {cite:p}`socket_page2`
 
 Afin d'établir cette connexion, il y a tout d'abord une phase dite de "handshake".
 
-Du côté du serveur, un port doit être ouvert. Pour ce projet, il s'agit du port X, car le propriétaire du serveur m'a indiqué qu'il était libre. A partir de là, le serveur est mis "sur écoute".
+Du côté du serveur, un port doit être ouvert. Pour ce projet, il s'agit du port 25565, car le propriétaire du serveur m'a indiqué qu'il était libre. A partir de là, le serveur est mis "sur écoute".
 
 Ensuite, le client envoie une première requête (une requête HTTP) vers ce port, pour demander une connection. Si le serveur accepte cette demande, une liaison est établie entre les deux. A partir de là, des messages transiteront entre eux automatiquement, sans autre requête.
+
+Dès qu'une des deux socket se déconnecte, la connexion est rompue et se ferme.
 
 ### Socket\.IO
 
 La source principale de ce chapitre est {cite:p}`socketIo`, la documentation officielle de la librairie socket\.IO. 
 
-Socket\.IO est une librairie JS qui permet d'implémenter des connections webSocket. En fournissant une abstraction et des fonctionnalités supplémentaires, elle permet de faciliter l'utilisation du protocole webSocket.
+Socket\.IO est une librairie JS qui permet d'implémenter des connections webSocket. En fournissant une abstraction et des fonctionnalités supplémentaires, elle permet de faciliter l'utilisation du protocole webSocket. Néanmoins, elle garde la possibilité d'utiliser des requêtes HTTP long-polling comme solution de secours.
+
+Pour créer une connexion du côté serveur, les lignes suivantes sont nécessaires:
+
+```{literalinclude} /src/socket.js
+:language: js
+:caption: /src/socket.js
+:linenos: true
+:lines: 1-24
+```
+Les premières lignes servent à initialiser un serveur HTTP et la dernière à écouter les différentes tentatives de connexion au port spécifié.
+
+Une constante <em>moulinWorkspace</em> a été créée pour différencier les informations provenant des parties de moulin de celles qui viennent des parties de morpion (ce jeu avait été programmé sur le même site comme préparation au projet du moulin).
+
+Enfin d'établir le lien, le client envoie la requête suivante:
+
+
+
+La syntaxe pour envoyer un message est:
+
+```{literalinclude} /src/socket.js
+:language: js
+:caption: /src/socket.js
+:linenos: true
+:lines: 26-28
+```
+La première ligne fait référence à la connexion qui a été établie entre le serveur et le client.
+
+Pour recevoir un message, 
+
+
+
+
+
+
 
 
 

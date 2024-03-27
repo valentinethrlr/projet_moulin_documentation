@@ -213,27 +213,49 @@ Pour créer une connexion du côté serveur, les lignes suivantes sont nécessai
 :language: js
 :caption: /src/socket.js
 :linenos: true
-:lines: 1-24
+:lines: 2-25
 ```
 Les premières lignes servent à initialiser un serveur HTTP et la dernière à écouter les différentes tentatives de connexion au port spécifié.
 
 Une constante <em>moulinWorkspace</em> a été créée pour différencier les informations provenant des parties de moulin de celles qui viennent des parties de morpion (ce jeu avait été programmé sur le même site comme préparation au projet du moulin).
 
-Enfin d'établir le lien, le client envoie la requête suivante:
-
-
-
-La syntaxe pour envoyer un message est:
+Enfin d'établir le lien, cette ligne de code est nécessaire du côté client:
 
 ```{literalinclude} /src/socket.js
 :language: js
 :caption: /src/socket.js
 :linenos: true
-:lines: 26-28
+:lines: 28
+```
+
+Une fois le <em>handshake</em> complété, la syntaxe pour envoyer un message est du côté client est:
+
+```{literalinclude} /src/socket.js
+:language: js
+:caption: /src/socket.js
+:linenos: true
+:lines: 30-32
 ```
 La première ligne fait référence à la connexion qui a été établie entre le serveur et le client.
 
-Pour recevoir un message, 
+Du côté serveur, une fonction <em>envoieMoulin</em> a été créée pour rendre le code plus lisible par la suite:
+
+```{literalinclude} /src/socket.js
+:language: js
+:caption: /src/socket.js
+:linenos: true
+:lines: 35-37
+```
+
+Pour recevoir un message, l'idée est la même côté client et côté serveur, il suffit de repérer un événement particulier:
+
+```{literalinclude} /src/socket.js
+:language: js
+:caption: /src/socket.js
+:linenos: true
+:lines: 40-42
+```
+Pour que ce bloc soit exécuté, il faut simplement que le nom de l'événement attendu corresponde à l'événement envoyé. 
 
 
 

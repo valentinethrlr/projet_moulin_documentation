@@ -1,3 +1,4 @@
+//initialisation côté serveur
 const httpServer = require("http").createServer();
 var moulinController = new (require("./moulin/moulin.js"))
 var morpionController = new (require("./morpion/morpion.js"))
@@ -8,7 +9,7 @@ const io = require("socket.io")(httpServer, {
       origin: "http://vgames.totifle.ch",
       methods: ["GET", "POST"]
     }
-  });
+});
 
 const moulinWorkspace = io.of("moulin")
 const morpionWorkspace = io.of("morpion")
@@ -23,7 +24,19 @@ morpionWorkspace.on("connect", (socket) => {
 
 httpServer.listen(25565)
 
+//initialisation côté client
+socket = io("http://totifle.ch:25565/moulin")
+
 io.on("connection", (socket) => {
     socket.emit("evenement", "message");
-  });
+});
 
+//envoyer un message à un client particulier
+global.envoiMoulin = function envoiMoulin(client, titre, message){
+    moulinWorkspace.to(client).emit(titre, message);
+}
+
+//recevoir un message
+socket.on("evenement", (message) => {
+    // ...
+});

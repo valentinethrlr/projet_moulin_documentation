@@ -262,6 +262,12 @@ Pour que ce bloc soit exécuté, il faut simplement que le nom de l'événement 
 
 Le fichier d'entrée côté client est <em>ligne.js</em> qui se trouve dans le dossier <em>assets</em> de <em>moulin</em> de <em>public_html</em>. Il est lié aux pages HTML <em>jouer.html</em> et <em>rejoindre</em>. Côté serveur, il s'agit du fichier <em>moulin.js</em> dans le dossier <em>moulin</em> de <em>nodeJS</em>.
 
+Globalement, l'algorithme de jeu est le même que pour les parties en local. Une grande partie du code a donc été repris du fichier <em>jeu.js</em> et mis dans la classe du fichier <em>PartieMoulin.js</em>. Pour des raisons de sécurité, il n'était pas possible d'avoir un fichier commun avec cette partie du code, le but était de séparer rigoureusement ce qui concerne le client de ce qui concerne le serveur.
+
+La principale différence est que tous les "calculs" se font sur le serveur, qui ne fait ensuite qu'envoyer ce qui doit être affiché sur les écrans des joueurs. Les clients quand à eux envoient les identifiants des cases et des pions sélectionnés.
+
+#### Code côté client
+
 
 
 

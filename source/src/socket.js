@@ -40,3 +40,13 @@ global.envoiMoulin = function envoiMoulin(client, titre, message){
 socket.on("evenement", (message) => {
     // ...
 });
+
+//fonctions commentées
+
+function creerLigne() {
+  if (!(dureeJoueur == null) && !(couleurJoueur == null)) {
+      socket.emit("setup", {"but": "creationId", "duree": dureeJoueur, "couleur": couleurJoueur})
+  } else {
+      document.getElementById("incompletude").style.display = "block"
+  }
+}

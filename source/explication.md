@@ -268,7 +268,17 @@ La principale différence est que tous les "calculs" se font sur le serveur, qui
 
 #### Code côté client
 
+Lorsque le client clique sur le bouton <em>créer une partie en ligne</em>, la fonction suivante (qui se trouve dans le fichier <em>ligne.js</em>) est appelée:
 
+```{literalinclude} /src/socket.js
+:language: js
+:caption: /src/socket.js
+:linenos: true
+:lines: 46-52
+```
+Nous constatons qu'ici un message est envoyé vers le serveur sous le format JSON. C'est ce même format qui sera utilisé dans tout le code. Le "but" décrit le type d'événement spécifique. Ensuite, les options de durée et de couleur du créateur sont également indiqué. Nous pouvons remarquer qu'il s'agit des variables globales du fichier <em>jeu.js</em>. Nous pouvons utiliser celles-ci, car étant donné que les deux fichiers JS sont liés à la page HTML, leurs variables sont communes.
+
+Afin d'éviter d'envoyer inutilement des informations au serveur lorsqu'une partie est jouée en local, une deuxième fonction <em>creerLigne</em> est ajoutée au "onclick" de 
 
 
 

@@ -59,8 +59,8 @@ connect(socket){
       while (id in this.parties) {
         id=Math.floor((Math.random()) * 1000000)
       }
-      let duree = Number(message["duree"])
-      let couleur = message["couleur"]
+      const duree = Number(message["duree"])
+      const couleur = message["couleur"]
       this.joueurs[socket.id] = id
       this.parties[id] = new this.PartieMoulin(id, socket.id, duree, couleur)
       socket.emit("info", {"but": "id", "id": id})

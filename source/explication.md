@@ -266,6 +266,15 @@ Globalement, l'algorithme de jeu est le même que pour les parties en local. Une
 
 La principale différence est que tous les "calculs" se font sur le serveur, qui ne fait ensuite qu'envoyer ce qui doit être affiché sur les écrans des joueurs. Les clients quand à eux envoient les identifiants des cases et des pions sélectionnés.
 
+#### Variables globales de <em>moulin.js</em>
+
+Tout d'abord, ce fichier ne contient en réalité qu'une classe, qui sera exporté dans le fichier <em>index.js</em> du dossier <em>nodeJs</em>.
+
+Cette classe sauvegarde toutes les parties dans le "dictionnaire" <em>parties</em>, avec l'id de la partie comme clé et un objet <em>PartieMoulin</em> comme valeur.
+
+La deuxième variable globale est <em>joueurs</em>, qui stocke les identifiants des clients comme clé et l'identifiant de la partie à laquelle ils jouent. 
+
+
 #### Mise en place du jeu
 
 Lorsque le client clique sur le bouton <em>créer une partie en ligne</em>, la fonction suivante (qui se trouve dans le fichier <em>ligne.js</em>) est appelée:
@@ -286,7 +295,7 @@ Le serveur le récupère comme il suit:
 :linenos: true
 :lines: 54-66
 ```
-
+Si le "but" reçu dans le message correspond à "creationId", un id sera généré aléatoirement, comportant entre 1 et 6 décimales. Au ligne 9 et 10, les informations sur les deux options de jeu sont récupérées. Ensuite, 
 
 
 Afin d'éviter d'envoyer inutilement des informations au serveur lorsqu'une partie est jouée en local, une deuxième fonction <em>creerLigne</em> est ajoutée au "onclick" de 

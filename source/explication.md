@@ -51,7 +51,7 @@ Une fois que tous les pions ont été mis en place, la phase de déplacement des
 ## Parties en local
 
 
-Le fichier principal d'implémentation du jeu local est <em>jeu.js</em>.
+Le fichier principal d'implémentation du jeu local est <em>jeu.js</em>, qui se trouve dans le dossier <em>assets</em> de <em>moulin</em> de <em>public_html</em>.
 
 #### Sélection des options de jeu
 
@@ -258,7 +258,9 @@ Pour recevoir un message, l'idée est la même côté client et côté serveur, 
 Pour que ce bloc soit exécuté, il faut simplement que le nom de l'événement attendu corresponde à celui de l'événement envoyé. 
 
 
+### Programmation
 
+Le fichier d'entrée côté client est <em>ligne.js</em> qui se trouve dans le dossier <em>assets</em> de <em>moulin</em> de <em>public_html</em>. Il est lié aux pages HTML <em>jouer.html</em> et <em>rejoindre</em>. Côté serveur, il s'agit du fichier <em>moulin.js</em> dans le dossier <em>moulin</em> de <em>nodeJS</em>.
 
 
 

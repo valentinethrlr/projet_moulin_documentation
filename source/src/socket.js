@@ -49,4 +49,34 @@ function creerLigne() {
   } else {
       document.getElementById("incompletude").style.display = "block"
   }
-}
+};
+
+connect(socket){
+
+  socket.on("setup", (message) => {
+    if (message["but"] == "creationId") {
+      let id=Math.floor((Math.random()) * 1000000)
+      while (id in this.parties) {
+        id=Math.floor((Math.random()) * 1000000)
+      }
+      let duree = Number(message["duree"])
+      let couleur = message["couleur"]
+      this.joueurs[socket.id] = id
+      this.parties[id] = new this.PartieMoulin(id, socket.id, duree, couleur)
+      socket.emit("info", {"but": "id", "id": id})
+      
+    } else if (message["but"] == "idConnexion") {
+      if (message["id"] in this.parties && this.parties[message["id"]].joueur2 == null) {
+        this.joueurs[socket.id] = message["id"]
+        this.parties[message["id"]].joueur2 = socket.id
+        this.commencerPartie(message["id"])   
+      } else {
+        socket.emit("info", {"but" : "fausseId"})
+      } 
+    } else if (message["but"] == "case") {
+      this.parties[message["id"]].joue(message["case"], socket.id)
+    } else if (message["but"] == "pion") {
+      this.parties[message["id"]].selectionne(message["pion"], socket.id)
+    }
+  })
+};

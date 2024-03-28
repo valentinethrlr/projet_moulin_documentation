@@ -1,14 +1,14 @@
 (explication)=
 
-# Caractéristique du serveur
-
-Ce projet est directement codé sur un serveur physique Dell PowerEdge.
-
 # Explication du fonctionnement du code
 
 Le back-end se compose de deux parties. Il y a d'une part les fichiers qui s'occupent des parties en local, rédigés en JavaScript, et d'autre part ceux qui s'occupent des parties en ligne également en JavaScript et en utilisant les fonctions de node.js.
 
 Le front-end quant à lui est rédigé en HTML et CSS.
+
+## Caractéristique du serveur
+
+Ce projet est directement codé sur un serveur physique Dell PowerEdge.
 
 
 ## Le plateau
@@ -255,7 +255,7 @@ Pour recevoir un message, l'idée est la même côté client et côté serveur, 
 :linenos: true
 :lines: 40-42
 ```
-Pour que ce bloc soit exécuté, il faut simplement que le nom de l'événement attendu corresponde à l'événement envoyé. 
+Pour que ce bloc soit exécuté, il faut simplement que le nom de l'événement attendu corresponde à celui de l'événement envoyé. 
 
 
 

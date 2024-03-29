@@ -8,7 +8,7 @@ Le front-end quant à lui est rédigé en HTML et CSS.
 
 ## Caractéristique du serveur
 
-Ce projet est directement codé sur un serveur physique Dell PowerEdge.
+Ce projet est hébergé sur un Dell Poweredge. Celui-ci contient 10 HDD sur lesquels sont stocké les fichiers du site, ainsi que 2 SSD sur lesquels le système d'exploitation est installé.
 
 
 ## Le plateau

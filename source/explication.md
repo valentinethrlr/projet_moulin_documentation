@@ -297,6 +297,10 @@ Le serveur le récupère comme il suit:
 ```
 Si le "but" reçu dans le message correspond à "creationId", un id sera généré aléatoirement, comportant entre 1 et 6 décimales. Au ligne 9 et 10, les informations sur les deux options de jeu sont récupérées. Ensuite, l'identifiant du créateur de la partie (<em>socket.id</em>) est stocké dans le dictionnaire <em>joueurs</em> avec l'identifiant de la partie à laquelle il jouera. Par la suite, une nouvelle instance de PartieMoulin est créée, en indiquant l'id de la partie, celle du premier joueur (donc le créateur), la durée et la couleur du créateur. Finalement, l'identifiant est envoyé au client.
 
+#### Classe <em>PartieMoulin</em>
+
+
+
 
 Afin d'éviter d'envoyer inutilement des informations au serveur lorsqu'une partie est jouée en local, une deuxième fonction <em>creerLigne</em> est ajoutée au "onclick" de 
 

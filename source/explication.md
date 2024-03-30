@@ -300,8 +300,27 @@ Si le "but" reçu dans le message correspond à "creationId", un id sera génér
 #### Classe <em>PartieMoulin</em>
 
 De manière générale, les variables d'instance sont les mêmes que les variables globales dans les parties en local. La seul différence est qu'il faut dans le cas d'une partie en ligne, savoir quel joueur a quelle couleur. Nous avons donc <em>couleur1</em> et <em>couleur2</em>, qui  indique la couleur du joueur 1, respectivement du joueur 2. La variable <em>joueur1</em> donne l'identifiant <em>socket.\io</em> du créateur de la partie et <em>joueur2</em> de l'utilisateur qui l'a rejoint. 
+Finalement, les variables <em>actuel_joueur</em> et <em>autre_joueur</em> permettent d'indiquer quel joueur a le droit de jouer et lequel doit attendre.
 
+Les méthodes sont globalement les mêmes que les fonctions de <em>jeu.js</em> et sont nommées à l'identique. La seule différence est que d'au lieu d'afficher de changer directement ce qui est affiché à l'écran des utilisateurs, un message est envoyé aux clients avec les informations nécessaire pour qu'eux-même puissent modifier les pages web.
 
+Par exemple, lors du déplacement d'un pion, les messages suivant sont envoyés:
+
+```{literalinclude} /src/socket.js
+:language: js
+:caption: /src/socket.js
+:linenos: true
+:lines: 84-85
+```
+Le premier est à destination du premier joueur, et le deuxième du deuxième joueur. Le message sera ensuite récupéré comme il suit par les clients:
+
+```{literalinclude} /src/socket.js
+:language: js
+:caption: /src/socket.js
+:linenos: true
+:lines: 87, 128-135
+```
+Nous constatons que le mouvement est tout d'abord effectué sur le plateau (fonction <em>mouvementLigne</em>, qui fonctionne de la même manière que la fonction <em>mouvement</em> de <em>jeu.js</em>). Ensuite, en fonction du joueur, il sera indiqué si c'est à lui de jouer ou s'il doit maintenant attendre que son adversaire joue.
 
 Afin d'éviter d'envoyer inutilement des informations au serveur lorsqu'une partie est jouée en local, une deuxième fonction <em>creerLigne</em> est ajoutée au "onclick" de 
 

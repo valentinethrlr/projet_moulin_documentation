@@ -80,3 +80,90 @@ connect(socket){
     }
   })
 };
+
+envoiMoulin(eval(`this.joueur${this.actuel_joueur}`), "info", {"but" : "mouvement", "pion" : this.current_pion, "case" : `case${caseNumber}`, "sonTour" : "non"})
+envoiMoulin(eval(`this.joueur${this.autre_joueur}`), "info", {"but" : "mouvement", "pion" : this.current_pion, "case" : `case${caseNumber}`, "sonTour" : "oui"})
+
+switch (message["but"]) {
+  case "id":
+      document.getElementById("optionsCreer").style.display = "none"
+      document.getElementById("votreId").innerText += message["id"]
+      votreId = message["id"]
+      document.getElementById("creationId").style.display = "block"
+      break
+  
+  case "fausseId":
+      document.getElementById("idFausse").innerText = "Cette partie n'existe pas."
+      break
+
+  case "commencer1":
+      document.getElementById("creationId").style.display = "none"
+      document.getElementById("jeuTotal").style.display = "block"
+      enLigne = true
+      break
+
+  case "commencer2":
+      document.getElementById("login").style.display = "none"
+      document.getElementById("jeuTotal").style.display = "block"  
+      enLigne = true
+      break
+
+  case "temps":
+      if (!(message["temps"] == "pasTimer")) {
+          document.getElementById("tempsb").innerText = `${message["temps"].toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:00`
+          document.getElementById("tempsn").innerText = `${message["temps"].toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:00`
+          document.getElementById("tempsb").style.display = "block"
+          document.getElementById("tempsn").style.display = "block"
+      } 
+      break
+      
+  case "couleur":     
+      if (message["couleur"] == "b") {
+          document.getElementById("indication").innerText = "C'est à vous de jouer !"
+      } else {
+          document.getElementById("indication").innerText = "C'est à l'adversaire de commencer !"
+      }
+      break
+
+  case "mouvement":
+      mouvementLigne(message["pion"], message["case"])
+      if (message["sonTour"] == "oui") {
+          document.getElementById("indication").innerText = "C'est à vous de jouer !"
+      } else {
+          document.getElementById("indication").innerText = "C'est à l'adversaire de jouer !"
+      }
+      break
+
+  case "chrono":
+      clearInterval(chornometreLigne)
+      timerLigne(message["temps"], message["couleurJoueur"])
+      break
+
+  case "fin":
+      finEnLigne(message["gagnant"])
+      break
+
+  case "supprimeAnimation":
+      supprimeAnimationLigne()
+      break
+
+  case "animation":
+      document.getElementById(message["pion"]).classList.add("animationSelection")
+      break
+
+  case "moulin":
+      document.getElementById("indication").innerText = "MOULIN !"
+      break
+
+  case "elimine":
+      elimineLigne(message["pion"], message["couleur"], message["sonTour"])
+      break
+
+  case "deconnecte":
+      document.getElementById("login").style.display = "none"
+      document.getElementById("jeuTotal").style.display = "none"
+      document.getElementById("deconnexion").innerText = "Votre adversaire s'est déconnecté"
+      document.getElementById("deconnexion").style.marginTop = "100px";
+      document.getElementById("deconnexion").style.display = "block"
+      break
+}

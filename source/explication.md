@@ -299,6 +299,7 @@ Si le "but" reçu dans le message correspond à "creationId", un id sera génér
 
 #### Classe <em>PartieMoulin</em>
 
+De manière générale, les variables d'instance sont les mêmes que les variables globales dans les parties en local. La seul différence est qu'il faut dans le cas d'une partie en ligne, savoir quel joueur a quelle couleur. Nous avons donc <em>couleur1</em> et <em>couleur2</em>, qui  indique la couleur du joueur 1, respectivement du joueur 2. La variable <em>joueur1</em> donne l'identifiant <em>socket.\io</em> du créateur de la partie et <em>joueur2</em> de l'utilisateur qui l'a rejoint. 
 
 
 

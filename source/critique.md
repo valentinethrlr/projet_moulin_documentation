@@ -12,4 +12,6 @@ Il faudrait par ailleurs idéalement éviter toutes les utilisations des fonctio
 
 Afin d'étendre encore ce projet, il serait finalement possible de permettre aux joueurs de faire des parties en ligne contre des adversaires choisis au hasard et souhaitant également faire une partie à ce moment-là, ou de faire une partie contre l'ordinateur. La première option demanderait une gestion supplémentaire des joueurs connectés au site et voulant commencer une partie. La deuxième option quant à elle impliquerait potentiellement l'implication d'une IA, ou du moins d'un algorithme de jeu fiable. 
 
+En conclusion, ce projet était une bonne mise en pratique des bases des langages JS, HTML et CSS, ainsi que de la programmation orientée objet et des technologies utilisant les webSocket. Il serait en revanche possible dans un deuxième temps de le pousser encore plus loin et de le rendre plus professionnel.
 
+Une première version est déjà en ligne et est accessible par n'importe qui souhaitant se divertir un instant en faisant une partie de moulin. Il ne me reste donc plus qu'à souhaiter à tous un bon jeu !

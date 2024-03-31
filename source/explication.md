@@ -346,7 +346,9 @@ C'est principalement ces différents cas qui sont indiqués dans le fichier <em>
 
 De la même manière que lors des parties en local, lorsque le jeu est terminé, le plateau et les pions sont masqués et le nom du gagnant est affiché.
 
-En revanche, du côté serveur, l'instance de la classe <em>PartieMoulin</em> correspondante dans le dictionnaire <em>parties</em>, ainsi que les joueurs dans le dictionnaire <em>joueurs</em> sont supprimés. 
+Lorsqu'un des joueurs se déconnecte de la partie, que ce soit à la fin ou durant la partie, un message est affiché chez l'adversaire pour le prévenir et annuler le jeu.
+
+Du côté serveur, l'instance de la classe <em>PartieMoulin</em> correspondante dans le dictionnaire <em>parties</em>, ainsi que les joueurs dans le dictionnaire <em>joueurs</em> sont supprimés. 
 
 
 

@@ -335,6 +335,14 @@ Voici les premières lignes de la fonction <em>joue(numeroCase)</em> dans <em>je
 :lines: 163, 172
 ```
 
+#### Déroulement du jeu côté client
+
+Le rôle du client sera donc simplement de récupérer les informations reçues du serveur et de réagir de manière appropriée en fonction du "but" du message envoyé.
+
+C'est principalement ces différents cas qui sont indiqués dans le fichier <em>ligne.js</em>. Les réactions suivent la même logique que celle des parties en local, qui ont été expliquées précédemment. 
+
+
+
 
 
 

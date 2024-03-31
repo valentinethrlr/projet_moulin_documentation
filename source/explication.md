@@ -342,6 +342,13 @@ Le rôle du client sera donc simplement de récupérer les informations reçues 
 C'est principalement ces différents cas qui sont indiqués dans le fichier <em>ligne.js</em>. Les réactions suivent la même logique que celle des parties en local, qui ont été expliquées précédemment. 
 
 
+#### Fin de partie
+
+De la même manière que lors des parties en local, lorsque le jeu est terminé, le plateau et les pions sont masqués et le nom du gagnant est affiché.
+
+En revanche, du côté serveur, l'instance de la classe <em>PartieMoulin</em> correspondante dans le dictionnaire <em>parties</em>, ainsi que les joueurs dans le dictionnaire <em>joueurs</em> sont supprimés. 
+
+
 
 
 

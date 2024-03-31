@@ -275,7 +275,7 @@ Cette classe sauvegarde toutes les parties dans le "dictionnaire" <em>parties</e
 La deuxième variable globale est <em>joueurs</em>, qui stocke les identifiants des clients comme clé et l'identifiant de la partie à laquelle ils jouent. 
 
 
-#### Mise en place du jeu
+#### Mise en place du jeu côté serveur
 
 Lorsque le client clique sur le bouton <em>créer une partie en ligne</em>, la fonction suivante (qui se trouve dans le fichier <em>ligne.js</em>) est appelée:
 
@@ -295,7 +295,9 @@ Le serveur le récupère comme il suit:
 :linenos: true
 :lines: 54-66
 ```
-Si le "but" reçu dans le message correspond à "creationId", un id sera généré aléatoirement, comportant entre 1 et 6 décimales. Au ligne 9 et 10, les informations sur les deux options de jeu sont récupérées. Ensuite, l'identifiant du créateur de la partie (<em>socket.id</em>) est stocké dans le dictionnaire <em>joueurs</em> avec l'identifiant de la partie à laquelle il jouera. Par la suite, une nouvelle instance de PartieMoulin est créée, en indiquant l'id de la partie, celle du premier joueur (donc le créateur), la durée et la couleur du créateur. Finalement, l'identifiant est envoyé au client.
+Si le "but" reçu dans le message correspond à "creationId", un id sera généré aléatoirement, comportant entre 1 et 6 décimales. Au ligne 9 et 10, les informations sur les deux options de jeu sont récupérées. Ensuite, l'identifiant du créateur de la partie (<em>socket.id</em>) est stocké dans le dictionnaire <em>joueurs</em> avec l'identifiant de la partie à laquelle il jouera. Par la suite, une nouvelle instance de PartieMoulin est créée, en indiquant l'id de la partie, celle du premier joueur (donc le créateur), la durée et la couleur du créateur. Finalement, l'identifiant est envoyé au client. Celui-ci récupérera l'information et l'affichera pour qu'il puisse le transmettre à son adversaire.
+
+Cet adversaire pourra joindre la partie en indiquant ce même identifiant après avoir cliqué sur le bouton <em>rejoindre une partie</em>. Si la partie qu'il désire rejoindre existe bel et bien, il sera ajouter en temps que <em>joueur2</em> dans celle-ci et un plateau s'affichera sur l'écran des des utilisateurs. La partie peut dès lors commencer.
 
 #### Classe <em>PartieMoulin</em>
 

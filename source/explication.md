@@ -324,7 +324,16 @@ Le premier est à destination du premier joueur, et le deuxième du deuxième jo
 ```
 Nous constatons que le mouvement est tout d'abord effectué sur le plateau (fonction <em>mouvementLigne</em>, qui fonctionne de la même manière que la fonction <em>mouvement</em> de <em>jeu.js</em>). Ensuite, en fonction du joueur, il sera indiqué si c'est à lui de jouer ou s'il doit maintenant attendre que son adversaire joue.
 
-Afin d'éviter d'envoyer inutilement des informations au serveur lorsqu'une partie est jouée en local, une deuxième fonction <em>creerLigne</em> est ajoutée au "onclick" de 
+Pour faire passer des messages du client au serveur et afin d'éviter d'envoyer inutilement des informations lorsqu'une partie est jouée en local, une deuxième fonction <em>joueLigne()</em> est ajoutée au "onclick" des pions et <em>selectionneLigne()</em> à ceux des cases. Bien que cette pratique ne soit pas très optimale, elle est tout de même pratique dans ce cas précis, puisque cela évite de faire basculer les clients vers une autre page HTML et par conséquent de changer leur <em>socket.\id</em> auprès du serveur. Par ailleurs, il est assuré que durant une partie en ligne, les fonctions relatives aux parties locales ne seront pas exécutée, puisqu'une condition <em>enLigne</em> devrait être vérifiée. Or cette variable ne prend la valeur <em>true</em> que si le bouton <em>Jouer sur l'appareil</em> a été choisi. 
+
+Voici les premières lignes de la fonction <em>joue(numeroCase)</em> dans <em>jeu.js</em> qui illustre cette condition.
+
+```{literalinclude} /src/jeu.js
+:language: js
+:caption: /src/jeu.js
+:linenos: true
+:lines: 163, 172
+```
 
 
 

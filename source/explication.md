@@ -350,6 +350,17 @@ Lorsqu'un des joueurs se déconnecte de la partie, que ce soit à la fin ou dura
 
 Du côté serveur, l'instance de la classe <em>PartieMoulin</em> correspondante dans le dictionnaire <em>parties</em>, ainsi que les joueurs dans le dictionnaire <em>joueurs</em> sont supprimés. 
 
+Cette déconnexion est détectée grâce à une propriété spécifique de la librairie <em>socket.\io</em>, et s'écrit comme il suit.
+
+
+```{literalinclude} /src/socket.js
+:language: js
+:caption: /src/socket.js
+:linenos: true
+:lines: 171-189
+```
+
+Les deux premières conditions servent à vérifier que la partie à supprimer ait bel et bien été créée, et la deuxième qu'un deuxième joueur ait rejoint cette partie. Ceci ne serait typiquement pas le cas si un joueur créer une partie, mais qu'aucun adversaire ne l'ait encore rejointe. Dans ce cas, le <em>currentPartie.joueur2</em> de la ligne 17 serait indéfini, ce qui créerait une erreur dans le code.
 
 
 

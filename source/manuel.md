@@ -37,6 +37,6 @@ width: 100%
 ---
 Situation lors d'un moulin
 ```
-Lorsque la partie est terminée, un message désignant le nom du gagnant apparaît.
+Lorsque la partie est terminée, un message désignant le nom du gagnant apparaît sur l'écran.
 
-Finalement, une page avec un rappel des règles est disponible, sur la page d'accueil du site.
+Finalement, une page avec un rappel des règles est disponible sur la page d'accueil du site.

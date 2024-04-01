@@ -224,16 +224,19 @@ Une fois de le joueur à fini son tour (c'est-à-dire que son pion a été dépl
 
 #### <em>selectionne(pionId)</em>
 
-Cette fonction gère tout ce qui concerne la sélection d'un pion. Elle est appelée lorsqu'un utilisateur clique sur un pion, et reçoit en paramètre l'identifiant de ce dernier.
+Cette fonction gère tout ce qui concerne la sélection d'un pion. Elle est appelée lorsqu'un utilisateur clique sur un pion et reçoit en paramètre l'identifiant de ce dernier.
 
-En première lieu, elle contrôle s'il y a eu un moulin, afin de permet à l'utilisateur de supprimer un pion de son adversaire. La première condition vérifiée dans ce cas est qu'il soit bien possible de supprimer le pion sélectionné. Pour ce faire, nous pouvons tirer profit de la liste <em>pionsPossibles</em> qui avait été crée dans la fonction <em>joue(case)</em> lorsque le moulin avait été repéré, afin de justement mettre en évidence les pions qu'il est possible de supprimer. 
-Une autre variable globale initialisée dans <em>jou(case)</em> est également réutilisée ici. Il s'agit de la situation particulière où tous les pions adverses se trouvent dans un moulin, et qu'il est donc possible d'éliminer n'importe quel pion. Dans ce cas, la variable <em>supprimeDansMoulin</em> prend la valeur <em>true</em>. Tous les moulins contenant le pion éliminé seront alors supprimés de la liste <em>moulinsPlateau</em>.
+En premier lieu, la fonction contrôle s'il y a eu un moulin (c'est-à-dire si la variable <em>typeMoulin</em> a comme valeur soit <em>b</em> soit <em>n</em>), afin de permettre à l'utilisateur de supprimer un pion de son adversaire. 
 
-Si le pion peut bien être éliminé, la fonction <em>elimine(pionId)</em> est appelée. Elle masque le pion sur le plateau et révèle un pion du côté du joueur qui a formé le moulin.
+Lorsqu'il sélectionne alors un pion première condition vérifiée est qu'il soit bien possible de supprimer le pion sélectionné. Pour ce faire, nous pouvons tirer profit de la liste <em>pionsPossibles</em> qui avait été créée dans la fonction <em>joue(case)</em> lorsque le moulin avait été repéré, afin de mettre en évidence les pions qu'il est justement possible de supprimer. 
 
-Finalement, la fonction enlève l'animation de tous les pions présents sur le plateau, met à jour la liste <em>plateau</em> et <em>typeMoulin</em>, puis permet à l'autre joueur de jouer en appelant <em>tourJoue()</em>.
+Une autre variable globale initialisée dans <em>joue(case)</em> est également réutilisée ici. Il s'agit de la situation particulière où tous les pions adverses se trouvent dans un moulin, et qu'il est par conséquent possible d'éliminer n'importe quel pion. Dans ce cas, la variable <em>supprimeDansMoulin</em> prend la valeur <em>true</em>. Tous les moulins contenant le pion éliminé seront alors supprimés de la liste <em>moulinsPlateau</em>.
 
-Le deuxième rôle de cette fonction est de sélectionner un pion afin de le déplacer. Avant tout, toutes les animations potentielles des pions sont supprimées. Ceci permet par exemple à un joueur de sélectionner un pion, puis de changer d'avis avant de cliquer sur une case et de choisir un autre pion. 
+Si le pion peut bien être éliminé, la fonction <em>elimine(pionId)</em> est appelée. Elle masque le pion sur le plateau et révèle un pion du côté du joueur qui a formé le moulin. Ceux-ci sont déjà présents dans le code HTML, mais ne sont simplement pas affichés.
+
+Pour finir, la fonction enlève l'animation de tous les pions présents sur le plateau, met à jour la liste <em>plateau</em> et <em>typeMoulin</em>, puis permet à l'autre joueur de jouer en appelant <em>tourJoue()</em>.
+
+Le deuxième rôle de cette fonction est de sélectionner un pion afin de le déplacer. Avant tout, toutes les animations potentielles des pions sont supprimées. Ceci permet à un joueur de sélectionner un pion, puis de changer d'avis avant de cliquer sur une case et d'en choisir un autre. 
 
 Il y a ensuite un contrôle qui vérifie que le pion désiré appartient bien au joueur qui doit faire un mouvement. Le pion est alors enregistré dans la variable globale <em>pion_actuel</em>. Après cela, la fonction <em>joue(case)</em> pourra être appelée.
 

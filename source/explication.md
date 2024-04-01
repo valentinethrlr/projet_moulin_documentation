@@ -129,6 +129,7 @@ La liste <em>moulinsPlateau</em> est par conséquent:
 :lines: 574
 ```
 
+Ensuite, la variable <em>typeMoulin</em> prend comme valeur <em>b</em> ou <em>n</em> si moulin vient d'être formé sur le plateau (et qu'il est soit blanc soit noir) ou <em>null</em> si aucun nouveau moulin n'a été détecté.
 
 Les deux variables <em>nbBElimine</em> et <em>nbNElimine</em> sauvegarde le nombre de pions blancs, respectivement noirs, qui ont déjà été éliminés durant la partie.
 
@@ -146,9 +147,11 @@ La fonction de chronométrage, <em>timer(temps)</em> prend donc en paramètre le
 
 #### <em>joue(numeroCase)</em>
 
-Cette fonction s'occupe de tout ce qui est lié à la sélection d'une case du plateau. Lorsqu'une case est sélectionnée par un utilisateur, cette fonction s'exécute avec en paramètre le numéro d'identification de la case choisie.
+Cette fonction s'occupe de tout ce qui est lié à la sélection d'une case du plateau.
 
-Lors des 18 premiers tours de jeu (phase de mise en place), elle permet aux joueurs de poser tour à tour leurs pions sur le plateau.
+Lorsqu'une case est sélectionnée par un utilisateur, cette fonction s'exécute en prenant comme paramètre le numéro d'identification de la case choisie.
+
+Lors des 18 premiers tours de jeu (phase de mise en place), elle permet aux joueurs de poser à tour de rôle leurs pions sur le plateau.
 
 ```{literalinclude} /src/jeu.js
 :language: js
@@ -161,7 +164,7 @@ Cette partie du code s'appuie principalement sur le choix des noms d'id des pion
 
 Le déplacement des pions jusqu'à une case se fait par la fonction <em>deplacement(pion, case)</em>.
 
-Cette fonction commence par appeler une autre fonction <em>mouvement(pion, case)</em>, qui code explicitement le déplacement du pion sur la case en indiquer les nouvelles coordonnées que devra prendre ce dernier. Ensuite, elle actualise la variable <em>plateau</em>.
+Cette fonction commence par appeler une autre fonction <em>mouvement(pion, case)</em>, qui code explicitement le déplacement du pion sur la case en indiquer les nouvelles coordonnées que devra prendre ce dernier. La fonction actualise ensuite la liste <em>plateau</em>, en plaçant l'id du pion au bon endroit selon la case sur laquelle il se trouve.
 
 De la même manière, la fonction <em>joue(case)</em> permet de déplacer les pions durant la phase de jeu. S'il un joueur n'a plus que 3 pions, il peut se déplacer comme il le souhaite sur le plateau; il n'y a donc aucune condition avant le mouvement.
 

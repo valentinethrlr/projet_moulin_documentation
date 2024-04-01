@@ -393,7 +393,7 @@ Le premier est à destination du premier joueur et le deuxième du deuxième jou
 ```
 Nous constatons que le mouvement est tout d'abord effectué sur le plateau (fonction <em>mouvementLigne</em>, qui fonctionne de la même manière que la fonction <em>mouvement</em> de <em>jeu.js</em>). Ensuite, en fonction du joueur, il sera indiqué si c'est à lui de jouer ou s'il doit maintenant attendre que son adversaire joue.
 
-Pour faire passer des messages du client au serveur et afin d'éviter d'envoyer inutilement des informations lorsqu'une partie est jouée en local, une deuxième fonction <em>joueLigne()</em> est ajoutée aux "onclick" des pions et <em>selectionneLigne()</em> à ceux des cases. Bien que cette pratique ne soit pas très optimale, elle est tout de même pratique dans ce cas précis, puisque cela évite de faire basculer les clients vers une autre page HTML et par conséquent de changer leur <em>socket.\id</em> auprès du serveur. Par ailleurs, il est assuré que durant une partie en ligne, les fonctions relatives aux parties locales ne seront pas exécutée, puisqu'une condition <em>enLigne</em> devrait être vérifiée. Or cette variable ne prend la valeur <em>true</em> que si le bouton <em>Jouer sur l'appareil</em> a été choisi. 
+Pour faire passer des messages du client au serveur et afin d'éviter d'envoyer inutilement des informations lorsqu'une partie est jouée en local, une deuxième fonction <em>joueLigne()</em> est ajoutée aux "onclick" des pions et <em>selectionneLigne()</em> à ceux des cases. Bien que cette pratique ne soit pas très optimale, elle est tout de même pratique dans ce cas précis, puisque cela évite de faire basculer les clients vers une autre page HTML et par conséquent de changer leur <em>socket.id</em> auprès du serveur. Par ailleurs, il est assuré que durant une partie en ligne, les fonctions relatives aux parties locales ne seront pas exécutées, puisqu'une condition <em>enLigne</em> devrait être vérifiée. Or cette variable ne prend la valeur <em>true</em> que si le bouton <em>Jouer sur l'appareil</em> a été choisi. 
 
 Voici les premières lignes de la fonction <em>joue(numeroCase)</em> dans <em>jeu.js</em> qui illustre cette condition.
 
@@ -415,11 +415,11 @@ C'est principalement ces différents cas qui sont indiqués dans le fichier <em>
 
 De la même manière que lors des parties en local, lorsque le jeu est terminé, le plateau et les pions sont masqués et le nom du gagnant est affiché.
 
-Lorsqu'un des joueurs se déconnecte de la partie, que ce soit à la fin ou durant la partie, un message est affiché chez l'adversaire pour le prévenir et annuler le jeu.
+Lorsqu'un des joueurs se déconnecte, que ce soit à la fin ou durant la partie, un message est affiché chez l'adversaire pour le prévenir et annuler le jeu.
 
-Du côté serveur, l'instance de la classe <em>PartieMoulin</em> correspondante dans le dictionnaire <em>parties</em>, ainsi que les joueurs dans le dictionnaire <em>joueurs</em> sont supprimés. 
+Du côté serveur, l'instance de la classe <em>PartieMoulin</em> correspondante dans l'objet <em>parties</em> ainsi que les joueurs dans l'objet <em>joueurs</em> sont supprimés. 
 
-Cette déconnexion est détectée grâce à une propriété spécifique de la librairie <em>socket.\io</em>, et s'écrit comme il suit.
+Cette déconnexion est détectée grâce à une propriété spécifique de la librairie <em>socket.io</em>.
 
 
 ```{literalinclude} /src/socket.js
@@ -429,7 +429,7 @@ Cette déconnexion est détectée grâce à une propriété spécifique de la li
 :lines: 171-189
 ```
 
-Les deux premières conditions servent à vérifier que la partie à supprimer ait bel et bien été créée, et la deuxième qu'un deuxième joueur ait rejoint cette partie. Ceci ne serait typiquement pas le cas si un joueur créer une partie, mais qu'aucun adversaire ne l'ait encore rejointe. Dans ce cas, le <em>currentPartie.joueur2</em> de la ligne 17 serait indéfini, ce qui créerait une erreur dans le code.
+Les deux premières conditions servent à vérifier que la partie à supprimer ait bel et bien été créée et la deuxième qu'un deuxième joueur ait rejoint cette partie. Ceci ne serait typiquement pas le cas si un joueur crée une partie, puis quitte la page d'attende sans qu'aucun adversaire ne l'a encore rejoint. Dans ce cas, le <em>currentPartie.joueur2</em> de la ligne 17 serait indéfini, ce qui créerait une erreur dans le code.
 
 
 

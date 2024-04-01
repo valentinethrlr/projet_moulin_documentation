@@ -13,6 +13,7 @@ Jeu du moulin
     manuel.md
     explication.md
     critique.md
+    appris.md
     references.rst
 
 

@@ -14,4 +14,3 @@ Afin d'étendre encore ce projet, il serait finalement possible de permettre aux
 
 En conclusion, ce projet était une bonne mise en pratique des bases des langages JS, HTML et CSS, ainsi que de la programmation orientée objet et des technologies utilisant les webSocket. Il serait en revanche possible par la suite de le pousser encore plus loin et de le rendre plus professionnel. Le facteur qui a empêché ceci pour ce travail est que le temps qu'il aurait fallu y consacré aurait très largement dépassé celui prévu dans le cadre du projet d'un projet d'OC.
 
-Une première version est déjà en ligne et est accessible par n'importe qui souhaitant se divertir un instant en faisant une partie de moulin. Il ne me reste donc plus qu'à souhaiter à tous un bon jeu !

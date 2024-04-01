@@ -8,7 +8,7 @@ Le front-end quant à lui est rédigé en HTML et CSS.
 
 ## Caractéristique du serveur
 
-Ce projet est hébergé sur un Dell Poweredge. Celui-ci contient 10 HDD sur lesquels sont stocké les fichiers du site, ainsi que 2 SSD sur lesquels le système d'exploitation est installé.
+Ce projet est hébergé sur un serveur Dell Poweredge. Celui-ci contient 10 HDD sur lesquels sont stocké les fichiers du site, ainsi que 2 SSD sur lesquels le système d'exploitation est installé.
 
 
 ## Le plateau
@@ -16,7 +16,7 @@ Ce projet est hébergé sur un Dell Poweredge. Celui-ci contient 10 HDD sur lesq
 Le plateau a été dessiné sur https://www.drawio.com/, puis converti en fichier svg. L'avantage est qu'il s'agit d'un format vectoriel, c'est-à-dire que l'image est stockée via des formules mathématiques qui modélisent les différents points et lignes dans une grille.
 Il n'y a donc pas de perte de résolution lors d'agrandissements ou de réductions de l'image. {cite:p}`format_svg`
 
-Dans le code, un numéro a été attribué à chaque case, en suivant le schéma ci-dessous:
+Pour la partie de programmation, un numéro a été attribué à chaque case, en suivant le schéma ci-dessous:
 
 ```{figure} images/plateau.png
 ---
@@ -24,7 +24,7 @@ width: 100%
 ---
 Numérotation des cases
 ```
-Le choix de commencer par la numérotation par 0 vient du fait qu'il est ainsi possible de créer une liste représentant le plateau, dans laquelle l'index d'une case correspond à son numéro d'identification.
+Le choix de commencer la numérotation par 0 vient du fait qu'il est ainsi facilement possible de créer une liste représentant le plateau, dans laquelle l'index d'une case correspond à son numéro d'identification.
 
 Une zone <em>area</em> entoure chaque case, pour qu'il soit possible de les sélectionner. Le code ci-dessous présente l'implémentation des trois premières cases du plateau.
 
@@ -35,29 +35,29 @@ Une zone <em>area</em> entoure chaque case, pour qu'il soit possible de les sél
 :lines: 57-60
 ```
 
-Les coordonnées des zones de sélection ont été définies à partir des coordonnées des cases données par le fichier svg. Cette zone est plus grande que la case elle-même, dans le but de rendre le jeu plus agréable à utiliser et éviter à l'utilisateur de devoir cliquer exactement sur les pixels de la case.
+Les coordonnées des zones de sélection ont été définies à partir des coordonnées des cases données dans le fichier svg. Cette zone est plus grande que la case elle-même, dans le but de rendre le jeu plus agréable à utiliser et éviter à l'utilisateur de devoir cliquer exactement sur les pixels de la case.
 
-Les pions quant à eux sont des éléments HTML. Chacun d'entre eux a comme identification un <em>p</em> (pour pion) suivi d'un <em>b</em> ou <em>n</em> (si le pion est blanc, respectivement n) et un numéro de 1 à 9. Ici, la numérotation commence par 1, car ceci permettra par la suite de simplifier le code de la mise en place du jeu. 
+Les pions quant à eux sont des éléments HTML. Chacun d'entre eux a comme identification un <em>p</em> (pour pion) suivi d'un <em>b</em> ou <em>n</em> (si le pion est blanc ou noir) et un numéro de 1 à 9. Ici, la numérotation commence par 1, car ceci permettra par la suite de simplifier le code de la mise en place du jeu. 
 
 
 ## Idée d'algorithme de jeu
 
-Une partie se découpe en deux phases principales. 
+Une partie est constituée de deux phases principales. 
 
-Il y a tout d'abord une phase de mise en place, durant laquelle chaque joueur pose ses neufs pions. Dès le cinquième tour, un contrôle du plateau est effectué par savoir si un moulin a été formé ou non. A partir cet instant, ce même contrôle est effectué après chaque tour joué.
+Il y a tout d'abord une phase de mise en place, durant laquelle chaque joueur pose ses neufs pions sur le plateau. Dès le cinquième tour, un contrôle du plateau est effectué par savoir si un moulin a été formé ou non.
 
 Une fois que tous les pions ont été mis en place, la phase de déplacement des pions commence. A tour de rôle, les joueurs effectuent deux actions différentes qui seront implémentées dans deux fonctions différentes: sélectionner un pion et sélectionner la case sur laquelle ils souhaitent déplacer ce pion.
 
 ## Parties en local
 
 
-Le fichier principal d'implémentation du jeu local est <em>jeu.js</em>, qui se trouve dans le dossier <em>assets</em> de <em>moulin</em> de <em>public_html</em>.
+Le fichier principal d'implémentation du jeu local est <em>jeu.js</em>, qui se trouve dans le dossier <em>assets</em> de <em>moulin</em> dans <em>public_html</em>.
 
 #### Sélection des options de jeu
 
 La première étape consiste à prendre en compte les options de jeu choisies par le créateur de la partie. 
 
-Pour ce faire, l'option de couleur et de temps sont sauvegardés à partir d'une fonction <em>onclick</em> définie sur la page HTML. Si le temps choisi est de 5 minutes, un <em>5</em> sera mis en paramètre de la fonction. Pour 10 minutes le paramètre deviendra <em>10</em> et <em>0</em> si le temps de jeu voulu est infini. La même idée est utilisée pour les couleurs, si le créateur de la partie souhaite avec des pions blancs, le paramètre donné sera <em>b</em>, un <em>n</em> sera donné pour le choix d'avoir des pions noirs et un <em>a</em> si l'option aléatoire est choisie.
+Pour ce faire, l'option de couleur et de temps sont sauvegardés à partir d'une fonction liée à un <em>onclick</em> de la page HTML. Si le temps choisi est de 5 minutes, un <em>5</em> sera mis en paramètre de la fonction <em>duree(t)</em>. Pour 10 minutes le paramètre deviendra <em>10</em> et <em>0</em> si le temps de jeu voulu est infini. La même idée est utilisée pour les couleurs, si le créateur de la partie souhaite avoir les pions blancs, le paramètre donné à <em>couleur(c)</em> sera <em>b</em>, un <em>n</em> sera donné s'il souhaite les pions noirs et un <em>a</em> si l'option aléatoire est choisie.
 
 Voici le code HTML qui permet de réaliser cela:
 
@@ -68,15 +68,15 @@ Voici le code HTML qui permet de réaliser cela:
 :lines: 3-15
 ```
 
-Les fonctions <em>duree(t)</em> et <em>couleur(c)</em> enregistre simplement les options choisies dans des variables globales <em>dureeJoueur</em> et <em>couleurJoueur</em>. 
+Les fonctions <em>duree(t)</em> et <em>couleur(c)</em> enregistre ensuite les options choisies dans des variables globales: <em>dureeJoueur</em> et <em>couleurJoueur</em>. 
 
 #### Variables globales
 
 Afin de faciliter l'implémentation du jeu, plusieurs variables globales ont été définies.
 
-Tout d'abord, la variable <em>plateau</em> modélise la plateau à chaque instant du jeu, en enregistrant la position des pions qui s'y trouve. Dans cette liste, l'élément à l'index n correspond au pion se trouvant sur la case de numéro d'identification n.
+Tout d'abord, la liste <em>plateau</em> modélise la plateau à chaque instant du jeu, en enregistrant la position des pions qui s'y trouve. Dans cette liste, l'élément à l'index <em>n</em> correspond au pion se trouvant sur la case de numéro d'identification <em>n</em>.
 
-Les déplacements possibles sur le plateau d'une case à une autre sont modélisés par toutes les variables zone<em>n</em>. Il s'agit d'une liste, comprenant tous les numéros des cases sur lesquels il est possible de se déplacer à partir de la case <em>n</em>.
+Les déplacements possibles sur le plateau d'une case à une autre sont modélisés par toutes les variables zone-<em>n</em>. Il s'agit de listes, comprenant tous les numéros des cases sur lesquels il est possible de se déplacer à partir de la case <em>n</em>.
 
 La figure ci-dessous illustre la <em>zone0</em> et la <em>zone19</em>.
 
@@ -85,6 +85,15 @@ La figure ci-dessous illustre la <em>zone0</em> et la <em>zone19</em>.
 width: 100%
 ---
 Exemples de zones: zone0 et zone19
+```
+
+Voici ces zones dans le fichier <em>jeu.js</em>:
+
+```{literalinclude} /src/jeu.js
+:language: html
+:caption: /src/jeu.js
+:linenos: true
+:lines: 17, 36
 ```
 
 La liste <em>moulins</em> présente tous les triplets de cases sur lesquels il est possible d'avoir un moulin. Nous constatons donc qu'il y a au total seize dispositions de moulin différentes.

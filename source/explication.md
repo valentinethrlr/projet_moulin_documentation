@@ -2,7 +2,7 @@
 
 # Explication du fonctionnement du code
 
-Le back-end se compose de deux parties. Il y a d'une part les fichiers qui s'occupent des parties en local, rédigés en JavaScript, et d'autre part ceux qui s'occupent des parties en ligne également en JavaScript et en utilisant les fonctions de node.js.
+Le back-end se compose de deux parties. Il y a d'une part les fichiers qui s'occupent des parties en local, rédigés en JavaScript, et d'autre part ceux qui s'occupent des parties en ligne, également en JavaScript et en utilisant la librairie <em>socket.\io</em>.
 
 Le front-end quant à lui est rédigé en HTML et CSS.
 
@@ -46,7 +46,7 @@ Une partie se découpe en deux phases principales.
 
 Il y a tout d'abord une phase de mise en place, durant laquelle chaque joueur pose ses neufs pions. Dès le cinquième tour, un contrôle du plateau est effectué par savoir si un moulin a été formé ou non. A partir cet instant, ce même contrôle est effectué après chaque tour joué.
 
-Une fois que tous les pions ont été mis en place, la phase de déplacement des pions commence. A tour de rôle, les joueurs effectuent deux actions différentes qui seront implémentées dans deux fonction différentes: sélectionner un pion et sélectionner la case sur laquelle ils souhaitent déplacer ce pion.
+Une fois que tous les pions ont été mis en place, la phase de déplacement des pions commence. A tour de rôle, les joueurs effectuent deux actions différentes qui seront implémentées dans deux fonctions différentes: sélectionner un pion et sélectionner la case sur laquelle ils souhaitent déplacer ce pion.
 
 ## Parties en local
 

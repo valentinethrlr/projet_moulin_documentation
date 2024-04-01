@@ -57,7 +57,7 @@ Le fichier principal d'implémentation du jeu local est <em>jeu.js</em>, qui se 
 
 La première étape consiste à prendre en compte les options de jeu choisies par le créateur de la partie. 
 
-Pour ce faire, l'option de couleur et de temps sont sauvegardés à partir d'une fonction liée à un <em>onclick</em> de la page HTML. Si le temps choisi est de 5 minutes, un <em>5</em> sera mis en paramètre de la fonction <em>duree(t)</em>. Pour 10 minutes le paramètre deviendra <em>10</em> et <em>0</em> si le temps de jeu voulu est infini. La même idée est utilisée pour les couleurs, si le créateur de la partie souhaite avoir les pions blancs, le paramètre donné à <em>couleur(c)</em> sera <em>b</em>, un <em>n</em> sera donné s'il souhaite les pions noirs et un <em>a</em> si l'option aléatoire est choisie.
+Pour ce faire, l'option de couleur et de temps sont sauvegardés à partir d'une fonction liée à un <em>onclick</em> de la page HTML. Si le temps choisi est de 5 minutes, un <em>5</em> sera mis en paramètre de la fonction <em>duree(t)</em>. Pour 10 minutes, le paramètre deviendra <em>10</em> et <em>0</em> si le temps de jeu voulu est infini. La même idée est utilisée pour les couleurs, si le créateur de la partie souhaite avoir les pions blancs, le paramètre donné à <em>couleur(c)</em> sera <em>b</em>, un <em>n</em> sera donné s'il souhaite les pions noirs et un <em>a</em> si l'option aléatoire est choisie.
 
 Voici le code HTML qui permet de réaliser cela:
 
@@ -74,7 +74,7 @@ Les fonctions <em>duree(t)</em> et <em>couleur(c)</em> enregistre ensuite les op
 
 Afin de faciliter l'implémentation du jeu, plusieurs variables globales ont été définies.
 
-Tout d'abord, la liste <em>plateau</em> modélise la plateau à chaque instant du jeu, en enregistrant la position des pions qui s'y trouve. Dans cette liste, l'élément à l'index <em>n</em> correspond au pion se trouvant sur la case de numéro d'identification <em>n</em>.
+Tout d'abord, la liste <em>plateau</em> modélise le plateau à chaque instant du jeu, en enregistrant la position des pions qui s'y trouve. Dans cette liste, l'élément à l'index <em>n</em> correspond au pion se trouvant sur la case de numéro d'identification <em>n</em>.
 
 Les déplacements possibles sur le plateau d'une case à une autre sont modélisés par toutes les variables zone-<em>n</em>. Il s'agit de listes, comprenant tous les numéros des cases sur lesquels il est possible de se déplacer à partir de la case <em>n</em>.
 
@@ -98,7 +98,7 @@ Voici ces zones dans le fichier <em>jeu.js</em>:
 
 La liste <em>moulins</em> présente tous les triplets de cases sur lesquels il est possible d'avoir un moulin. Nous constatons donc qu'il y a au total seize dispositions de moulin différentes.
 
-Cette liste est liée à <em>moulinsPlateau</em>, qui à une position <em>i</em> indique si le triplet de cases à l'index <em>i</em> de <em>moulins</em> est occupée par un moulin. Ceci permet de garder en mémoire les moulins présents sur la plateau même lorsqu'ils ont été créées durant les tours de jeu antérieur, sans qu'ils soient détectés une deuxième fois à chaque nouveau tour.
+Cette liste est liée à <em>moulinsPlateau</em>, qui à une position <em>i</em> indique si le triplet de cases à l'index <em>i</em> de <em>moulins</em> est occupée par un moulin. Ceci permet de garder en mémoire les moulins présents sur le plateau même lorsqu'ils ont été créés durant les tours de jeu antérieur, sans qu'ils soient détectés une deuxième fois à chaque nouveau tour.
 
 Pour illustrer ceci, voici un exemple concret d'un instant de partie:
 
@@ -139,7 +139,7 @@ En ce qui concerne le déroulement du jeu, la variable globale <em>joueur_actuel
 
 #### <em>tourJoue()</em>
 
-Cette fonction permet d'incrémenter les tours durant la partie. Une fois qu'un des joueurs a terminé son action de jeu, c'est l'autre qui devient le <em>joueur_actuel</em>. Une indication avec la couleur du joueur qui doit réaliser un mouvement s'affiche alors au-dessus du plateau. Finalement, si une option de durée de jeu a été choisie, le chronomètre du joueur suivant se déclenche. Les variables <em>tempsb</em> et <em>tempsn</em> indiquent le temps de jeu restant du joueur blanc, respectivement noir.
+Cette fonction permet d'incrémenter les tours durant la partie. Lorsqu'un des joueurs a terminé son action de jeu, c'est l'autre qui devient le <em>joueur_actuel</em>. Une indication avec la couleur du joueur qui doit réaliser un mouvement s'affiche alors au-dessus du plateau. Finalement, si une option de durée de jeu a été choisie, le chronomètre du joueur suivant se déclenche. Les variables <em>tempsb</em> et <em>tempsn</em> indiquent le temps de jeu restant du joueur aux pions blancs, respectivement noirs.
 
 La fonction de chronométrage, <em>timer(temps)</em> prend donc en paramètre le temps de jeu restant du joueur et décrémente toutes les secondes cette variable grâce à la fonction JS <em>setInterval()</em>. Lors d'une décrémentation, l'horloge présente sur la page de jeu et implémentée en HTML est également modifiée.
 

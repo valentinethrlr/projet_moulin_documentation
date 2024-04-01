@@ -70,6 +70,8 @@ Voici le code HTML qui permet de réaliser cela:
 
 Les fonctions <em>duree(t)</em> et <em>couleur(c)</em> enregistre ensuite les options choisies dans des variables globales: <em>dureeJoueur</em> et <em>couleurJoueur</em>. 
 
+Si une de ces deux options n'a pas été déterminée par le créateur de la partie, un message d'erreur s'affiche sur l'écran.
+
 #### Variables globales
 
 Afin de faciliter l'implémentation du jeu, plusieurs variables globales ont été définies.
@@ -244,14 +246,14 @@ Finalement, cette fonction contrôle les fins de partie. Elle vérifie qu'aucun 
 
 ## Parties en ligne
 
-Pour les parties en ligne, la technologie utilisée est le node JS, avec le concept de web sockets.
+Pour les parties en ligne, la technologie utilisée est le node JS, avec le concept de WebSockets.
 
 ### Utilité des WebSockets
 
 Les sources utilisées pour rédiger cette partie sont: {cite:p}`socket_video`, {cite:p}`socket_page1`, {cite:p}`socket_page2` et {cite:p}`socket_page3`.
 
 L'idée est de créer une connection bidirectionnelle entre le serveur et le client, qui sont alors appelés des "sockets". 
-L'avantage et que le client et le serveur pourront ensuite s'envoyer des informations en temps réel, sans que le client ne doive constamment faire de demandes. 
+L'avantage est que le client et le serveur pourront ensuite s'envoyer des messages en temps réel, sans que le client ne doive constamment faire des demandes auprès du serveur. 
 
 ```{figure} images/websocket-handshake.png
 ---
@@ -262,9 +264,9 @@ WebSocket en schéma, tiré de {cite:p}`socket_page2`
 
 Afin d'établir cette connexion, il y a tout d'abord une phase dite de "handshake".
 
-Du côté du serveur, un port doit être ouvert. Pour ce projet, il s'agit du port 25565, car le propriétaire du serveur m'a indiqué qu'il était libre. A partir de là, le serveur est mis "sur écoute".
+Du côté du serveur, un port doit être ouvert. Pour ce projet, il s'agit du port 25565. (La raison pour cela est que le propriétaire du serveur m'a indiqué qu'il était libre). Ensuite, le serveur est mis "sur écoute".
 
-Ensuite, le client envoie une première requête (une requête HTTP) vers ce port, pour demander une connection. Si le serveur accepte cette demande, une liaison est établie entre les deux. A partir de là, des messages transiteront entre eux automatiquement, sans autre requête.
+Ensuite, le client envoie une première requête (une requête HTTP) vers ce port, pour demander une connection. Si le serveur accepte cette demande, une liaison est établie entre les deux. A partir de cet instant, des messages transiteront entre eux automatiquement, sans autre requête.
 
 Dès qu'une des deux socket se déconnecte, la connexion est rompue et se ferme.
 
@@ -329,22 +331,22 @@ Pour que ce bloc soit exécuté, il faut simplement que le nom de l'événement 
 
 Le fichier d'entrée côté client est <em>ligne.js</em> qui se trouve dans le dossier <em>assets</em> de <em>moulin</em> de <em>public_html</em>. Il est lié aux pages HTML <em>jouer.html</em> et <em>rejoindre</em>. Côté serveur, il s'agit du fichier <em>moulin.js</em> dans le dossier <em>moulin</em> de <em>nodeJS</em>.
 
-Globalement, l'algorithme de jeu est le même que pour les parties en local. Une grande partie du code a donc été repris du fichier <em>jeu.js</em> et mis dans la classe du fichier <em>PartieMoulin.js</em>. Pour des raisons de sécurité, il n'était pas possible d'avoir un fichier commun avec cette partie du code, le but était de séparer rigoureusement ce qui concerne le client de ce qui concerne le serveur.
+Globalement, l'algorithme de jeu est le même que pour les parties en local. Une grande partie du code a donc été repris du fichier <em>jeu.js</em> et mis dans la classe du fichier <em>PartieMoulin.js</em>. Pour des raisons de sécurité, il n'était pas possible d'avoir un fichier commun avec cette partie du code, le but étant de séparer rigoureusement ce qui concerne le client de ce qui concerne le serveur.
 
-La principale différence est que tous les "calculs" se font sur le serveur, qui ne fait ensuite qu'envoyer ce qui doit être affiché sur les écrans des joueurs. Les clients quand à eux envoient les identifiants des cases et des pions sélectionnés.
+La principale différence est que tous les "calculs" se font sur le serveur, qui ne fait ensuite qu'envoyer ce qui doit être affiché sur les écrans des joueurs. Les clients quant à eux envoient les identifiants des cases et des pions sélectionnés.
 
 #### Variables globales de <em>moulin.js</em>
 
-Tout d'abord, ce fichier ne contient en réalité qu'une classe, qui sera exporté dans le fichier <em>index.js</em> du dossier <em>nodeJs</em>.
+Ce fichier ne contient en réalité qu'une classe, qui sera exporté dans le fichier <em>index.js</em> du dossier <em>nodeJs</em>.
 
-Cette classe sauvegarde toutes les parties dans le "dictionnaire" <em>parties</em>, avec l'id de la partie comme clé et un objet <em>PartieMoulin</em> comme valeur.
+Cette classe sauvegarde toutes les parties dans l'objet <em>parties</em>, avec l'id de la partie comme clé et un objet <em>PartieMoulin</em> comme valeur.
 
-La deuxième variable globale est <em>joueurs</em>, qui stocke les identifiants des clients comme clé et l'identifiant de la partie à laquelle ils jouent. 
+La deuxième variable globale est l'objet <em>joueurs</em>, qui stocke les identifiants des clients comme clé et l'identifiant de la partie à laquelle ils jouent comme valeur.
 
 
 #### Mise en place du jeu côté serveur
 
-Lorsque le client clique sur le bouton <em>créer une partie en ligne</em>, la fonction suivante (qui se trouve dans le fichier <em>ligne.js</em>) est appelée:
+Lorsque le client clique sur le bouton <em>Créer une partie en ligne</em>, la fonction suivante (qui se trouve dans le fichier <em>ligne.js</em>) est appelée:
 
 ```{literalinclude} /src/socket.js
 :language: js
@@ -352,9 +354,9 @@ Lorsque le client clique sur le bouton <em>créer une partie en ligne</em>, la f
 :linenos: true
 :lines: 46-52
 ```
-Nous constatons qu'ici un message est envoyé vers le serveur sous le format JSON. C'est ce même format qui sera utilisé dans tout le code. Le "but" décrit le type d'événement spécifique. Ensuite, les options de durée et de couleur du créateur sont également indiqué. Nous pouvons remarquer qu'il s'agit des variables globales du fichier <em>jeu.js</em>. Nous pouvons utiliser celles-ci, car étant donné que les deux fichiers JS sont liés à la page HTML, leurs variables sont communes.
+Nous constatons qu'ici un message est envoyé vers le serveur sous le format JSON. C'est ce même format qui sera utilisé dans tout le code. Le "but" décrit le type d'événement spécifique, ici, il s'agit de la création d'un id de partie. Ensuite, les options de durée et de couleur du créateur sont indiqués. Nous pouvons remarquer qu'il s'agit des variables globales du fichier <em>jeu.js</em>. Nous pouvons utiliser celles-ci, car les deux fichiers JS sont liés à la même page HTML.
 
-Le serveur le récupère comme il suit:
+Le serveur récupère le message comme il suit:
 
 ```{literalinclude} /src/socket.js
 :language: js
@@ -362,16 +364,16 @@ Le serveur le récupère comme il suit:
 :linenos: true
 :lines: 54-66
 ```
-Si le "but" reçu dans le message correspond à "creationId", un id sera généré aléatoirement, comportant entre 1 et 6 décimales. Au ligne 9 et 10, les informations sur les deux options de jeu sont récupérées. Ensuite, l'identifiant du créateur de la partie (<em>socket.id</em>) est stocké dans le dictionnaire <em>joueurs</em> avec l'identifiant de la partie à laquelle il jouera. Par la suite, une nouvelle instance de PartieMoulin est créée, en indiquant l'id de la partie, celle du premier joueur (donc le créateur), la durée et la couleur du créateur. Finalement, l'identifiant est envoyé au client. Celui-ci récupérera l'information et l'affichera pour qu'il puisse le transmettre à son adversaire.
+Si le "but" reçu dans le message correspond à "creationId", un id comprenant entre 1 et 6 décimales sera généré aléatoirement. Au ligne 9 et 10, les informations sur les deux options de jeu sont récupérées. Ensuite, l'identifiant du créateur de la partie (<em>socket.id</em>) est stocké dans l'objet <em>joueurs</em> avec l'identifiant de la partie à laquelle il jouera. Par la suite, une nouvelle instance de <em>PartieMoulin</em> est créée, en indiquant l'id de la partie, celle du premier joueur (donc le créateur), la durée et la couleur des pions du créateur. Finalement, l'identifiant est envoyé au client. Celui-ci récupérera l'information et l'affichera pour qu'il puisse le transmettre à son adversaire.
 
-Cet adversaire pourra joindre la partie en indiquant ce même identifiant après avoir cliqué sur le bouton <em>rejoindre une partie</em>. Si la partie qu'il désire rejoindre existe bel et bien, il sera ajouter en temps que <em>joueur2</em> dans celle-ci et un plateau s'affichera sur l'écran des des utilisateurs. La partie peut dès lors commencer.
+Cet adversaire pourra joindre la partie en indiquant ce même identifiant après avoir cliqué sur le bouton <em>rejoindre une partie</em>. Si la partie qu'il désire rejoindre existe bel et bien, il sera ajouté en temps que <em>joueur2</em> dans celle-ci et un plateau s'affichera sur l'écran des deux utilisateurs. La partie peut dès lors commencer.
 
 #### Classe <em>PartieMoulin</em>
 
-De manière générale, les variables d'instance sont les mêmes que les variables globales dans les parties en local. La seul différence est qu'il faut dans le cas d'une partie en ligne, savoir quel joueur a quelle couleur. Nous avons donc <em>couleur1</em> et <em>couleur2</em>, qui  indique la couleur du joueur 1, respectivement du joueur 2. La variable <em>joueur1</em> donne l'identifiant <em>socket.\io</em> du créateur de la partie et <em>joueur2</em> de l'utilisateur qui l'a rejoint. 
-Finalement, les variables <em>actuel_joueur</em> et <em>autre_joueur</em> permettent d'indiquer quel joueur a le droit de jouer et lequel doit attendre.
+De manière générale, les variables d'instance sont les mêmes que les variables globales dans les parties en local. La seul différence est qu'il faut dans le cas d'une partie en ligne connaître la couleur des pions de chaque utilisateur. Nous avons donc <em>couleur1</em> et <em>couleur2</em>, qui  indiquent la couleur du joueur 1, respectivement du joueur 2. La variable <em>joueur1</em> donne l'identifiant <em>socket.\io</em> du créateur de la partie et <em>joueur2</em> de l'utilisateur qui l'a rejoint. 
+Finalement, les variables <em>actuel_joueur</em> et <em>autre_joueur</em> permettent d'indiquer quel joueur a le droit de jouer et lequel doit attendre, en prenant à tour de rôle les valeurs <em>1</em> et <em>2</em>.
 
-Les méthodes sont globalement les mêmes que les fonctions de <em>jeu.js</em> et sont nommées à l'identique. La seule différence est que d'au lieu d'afficher de changer directement ce qui est affiché à l'écran des utilisateurs, un message est envoyé aux clients avec les informations nécessaire pour qu'eux-même puissent modifier les pages web.
+Les méthodes sont globalement les mêmes que les fonctions de <em>jeu.js</em> et sont nommées à l'identique. Néanmoins, au lieu de changer directement ce qui est affiché à l'écran des utilisateurs au cours de la partie, un message est envoyé aux clients avec les informations nécessaire pour qu'eux-même puissent modifier les pages web.
 
 Par exemple, lors du déplacement d'un pion, les messages suivant sont envoyés:
 
@@ -381,7 +383,7 @@ Par exemple, lors du déplacement d'un pion, les messages suivant sont envoyés:
 :linenos: true
 :lines: 84-85
 ```
-Le premier est à destination du premier joueur, et le deuxième du deuxième joueur. Le message sera ensuite récupéré comme il suit par les clients:
+Le premier est à destination du premier joueur et le deuxième du deuxième joueur. Le message sera ensuite récupéré comme il suit par les clients:
 
 ```{literalinclude} /src/socket.js
 :language: js
@@ -391,7 +393,7 @@ Le premier est à destination du premier joueur, et le deuxième du deuxième jo
 ```
 Nous constatons que le mouvement est tout d'abord effectué sur le plateau (fonction <em>mouvementLigne</em>, qui fonctionne de la même manière que la fonction <em>mouvement</em> de <em>jeu.js</em>). Ensuite, en fonction du joueur, il sera indiqué si c'est à lui de jouer ou s'il doit maintenant attendre que son adversaire joue.
 
-Pour faire passer des messages du client au serveur et afin d'éviter d'envoyer inutilement des informations lorsqu'une partie est jouée en local, une deuxième fonction <em>joueLigne()</em> est ajoutée au "onclick" des pions et <em>selectionneLigne()</em> à ceux des cases. Bien que cette pratique ne soit pas très optimale, elle est tout de même pratique dans ce cas précis, puisque cela évite de faire basculer les clients vers une autre page HTML et par conséquent de changer leur <em>socket.\id</em> auprès du serveur. Par ailleurs, il est assuré que durant une partie en ligne, les fonctions relatives aux parties locales ne seront pas exécutée, puisqu'une condition <em>enLigne</em> devrait être vérifiée. Or cette variable ne prend la valeur <em>true</em> que si le bouton <em>Jouer sur l'appareil</em> a été choisi. 
+Pour faire passer des messages du client au serveur et afin d'éviter d'envoyer inutilement des informations lorsqu'une partie est jouée en local, une deuxième fonction <em>joueLigne()</em> est ajoutée aux "onclick" des pions et <em>selectionneLigne()</em> à ceux des cases. Bien que cette pratique ne soit pas très optimale, elle est tout de même pratique dans ce cas précis, puisque cela évite de faire basculer les clients vers une autre page HTML et par conséquent de changer leur <em>socket.\id</em> auprès du serveur. Par ailleurs, il est assuré que durant une partie en ligne, les fonctions relatives aux parties locales ne seront pas exécutée, puisqu'une condition <em>enLigne</em> devrait être vérifiée. Or cette variable ne prend la valeur <em>true</em> que si le bouton <em>Jouer sur l'appareil</em> a été choisi. 
 
 Voici les premières lignes de la fonction <em>joue(numeroCase)</em> dans <em>jeu.js</em> qui illustre cette condition.
 

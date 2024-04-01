@@ -569,3 +569,6 @@ function timer(temps) {
             
         }, 1000)
 }
+
+//exemple concret des listes moulinsPlateau et moulins
+moulinsPlateau = [null, 'n', null, null, null, null, null, null, 'b', null, null, null, null, null, null, null]

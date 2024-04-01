@@ -98,7 +98,37 @@ Voici ces zones dans le fichier <em>jeu.js</em>:
 
 La liste <em>moulins</em> présente tous les triplets de cases sur lesquels il est possible d'avoir un moulin. Nous constatons donc qu'il y a au total seize dispositions de moulin différentes.
 
-Cette liste est liée à <em>moulinsPlateau</em>, qui à une position i indique si le triplet de cases à l'indexe i de <em>moulins</em> est occupée par un moulin. Ceci permet de garder en mémoire les moulins présents sur la plateau même lorsqu'ils ont été créées durant les tours de jeu antérieur, sans qu'ils soient à nouveau détectés à chaque nouveau tour.
+Cette liste est liée à <em>moulinsPlateau</em>, qui à une position <em>i</em> indique si le triplet de cases à l'index <em>i</em> de <em>moulins</em> est occupée par un moulin. Ceci permet de garder en mémoire les moulins présents sur la plateau même lorsqu'ils ont été créées durant les tours de jeu antérieur, sans qu'ils soient détectés une deuxième fois à chaque nouveau tour.
+
+Pour illustrer ceci, voici un exemple concret d'un instant de partie:
+
+```{figure} images/situationParticuliere.png
+---
+width: 100%
+---
+Instant de partie
+```
+
+La liste <em>moulin</em> se présente comme il suit:
+
+```{literalinclude} /src/jeu.js
+:language: html
+:caption: /src/jeu.js
+:linenos: true
+:lines: 43
+```
+
+Nous constatons donc que les deux moulins présents sur le plateau correspondent aux triplets aux index 1 et 8.
+
+La liste <em>moulinsPlateau</em> est par conséquent:
+
+```{literalinclude} /src/jeu.js
+:language: html
+:caption: /src/jeu.js
+:linenos: true
+:lines: 574
+```
+
 
 Les deux variables <em>nbBElimine</em> et <em>nbNElimine</em> sauvegarde le nombre de pions blancs, respectivement noirs, qui ont déjà été éliminés durant la partie.
 

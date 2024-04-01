@@ -181,7 +181,7 @@ Dans cette condition, l'emplacement du pion est tout d'abord recherchée par l'e
 
 Le deuxième rôle de <em>joue(numeroCase)</em> est de contrôler si un moulin a été formé immédiatement après le fin du tour du joueur (c'est-à-dire lorsqu'il aura posé son pion). Ce contrôle ne s'effectue qu'à partir du cinquième tour, étant donné qu'il est impossible de former un moulin avant, puisque les joueurs n'auront que deux pions sur le plateau.
 
-Pour ce faire, toutes les configurations possibles de moulin (présentées dans <em>moulins</em>) sont parcourues et il est à chaque fois vérifié si les pions présents sur ces triplets sont identiques. Si c'est effectivement le cas, il est contrôlé que le moulin vient d'être formé; par conséquent qu'il n'existe pas encore dans la liste <em>moulinsPlateau</em> à l'emplacement correspondant. Si les pions des cases des triplets sont différents, les contrôles continuent jusqu'à la fin de la liste des triplets et la configuration est indiqué comme vide dans <em>moulinsPlateau</em>. Ceci permet de prendre en compte le cas où un moulin est ouvert, et donc potentiellement à nouveau formable.
+Pour ce faire, toutes les configurations possibles de moulin (présentées dans <em>moulins</em>) sont parcourues et il est à chaque fois vérifié si les pions présents sur ces triplets sont identiques. Si c'est effectivement le cas, il est contrôlé que le moulin vient d'être formé; par conséquent qu'il n'existe pas encore dans la liste <em>moulinsPlateau</em> à l'emplacement correspondant. Si les pions des cases des triplets sont différents, les contrôles continuent jusqu'à la fin de la liste des triplets et la configuration est marqué <em>null</em> dans la liste <em>moulinsPlateau</em>. Ceci permet également de prendre en compte les cas de moulins existants qui ont été détruits, mais qui pourraient être reformés par la suite.
 
 S'il y a effectivement un moulin, un message est affiché au-dessus du plateau. Le moulin est enregistré dans <em>moulinsPlateau</em>, le type de moulin dans <em>typeMoulin</em> et le nombre de mouvements sans prise est remis à zéro.
 
@@ -196,9 +196,18 @@ Afin de créer cette liste, il est tout d'abord plus simple de créer la liste d
 :lines: 407-428
 ```
 
-Pour ce faire, il suffit de parcourir la liste <em>moulinsPlateau</em>, si un emplacement contient un moulin adversaire (donc pas du type du moulin qui vient d'être créé), les pions situés sur les cases du triplet correspondant sont ajouté dans la liste <em>intouchable</em>, qui sera finalement retournée.
+Pour ce faire, il suffit de parcourir la liste <em>moulinsPlateau</em>, si un emplacement contient un moulin adversaire (donc pas du type du moulin qui vient d'être créé), les pions situés sur les cases du triplet correspondant sont ajouté dans la liste <em>intouchable</em>, qui est finalement retournée.
 
-Les éléments présents dans cette liste sont animés pour être plus facilement repérables. 
+Ensuite, pour créer la liste des pions qu'il est possible de supprimer, nous prenons tous les pions adverses et vérifions qu'ils se trouvent sur le plateau, mais qu'ils se trouvent pas dans la liste des pions intouchables.
+
+```{literalinclude} /src/jeu.js
+:language: css
+:caption: /src/jeu.js
+:linenos: true
+:lines: 431-455
+```
+
+Les éléments présents dans liste des pions possibles sont animés pour être plus facilement repérables. 
 
 L'animation est réalisée en CSS. 
 
@@ -209,9 +218,7 @@ L'animation est réalisée en CSS.
 :lines: 1-9
 ```
 
-Le décorateur <em>@keyframes</em> indique l'état final de l'objet, en l'occurrence, il obtiendra un bord rouge. Ensuite, la propriété <em>.animationSelection</em> indique la durée de l'animation, qui est dans ce cas de 0.75 secondes.
-
-S'il n'y a pas de moulin au triplet contrôlé, cet emplacement est marqué <em>null</em> dans la liste <em>moulinsPlateau</em>. Ceci permet également de prendre en compte les cas de moulins existants qui ont été détruits, mais qui pourraient être reformés par la suite.
+Le décorateur <em>@keyframes</em> indique l'état final de l'objet: en l'occurrence, il obtiendra un bord rouge. Ensuite, la propriété <em>.animationSelection</em> indique la durée de l'animation, qui est dans ce cas de 0.75 secondes.
 
 Une fois de le joueur à fini son tour (c'est-à-dire que son pion a été déplacé), la fonction <em>tourJoue()</em> est exécutée.
 

@@ -166,7 +166,7 @@ Le déplacement des pions jusqu'à une case se fait par la fonction <em>deplacem
 
 Cette fonction commence par appeler une autre fonction <em>mouvement(pion, case)</em>, qui code explicitement le déplacement du pion sur la case en indiquer les nouvelles coordonnées que devra prendre ce dernier. La fonction actualise ensuite la liste <em>plateau</em>, en plaçant l'id du pion au bon endroit selon la case sur laquelle il se trouve.
 
-De la même manière, la fonction <em>joue(case)</em> permet de déplacer les pions durant la phase de jeu. S'il un joueur n'a plus que 3 pions, il peut se déplacer comme il le souhaite sur le plateau; il n'y a donc aucune condition avant le mouvement.
+Pour la suite du jeu, les pions sont déplacés à l'aide de cette même fonction. Si un joueur n'a plus que 3 pions, il peut se déplacer comme il le souhaite sur le plateau; il n'y a donc aucune condition avant le mouvement.
 
 En revanche, lors des tours "normaux", une condition vérifie que la case choisie se situe bien dans la <em>zone</em> de la case sur laquelle se trouve le pion à déplacer.
 
@@ -177,13 +177,28 @@ En revanche, lors des tours "normaux", une condition vérifie que la case choisi
 :lines: 215-221
 ```
 
-Dans cette condition, l'emplacement du pion est tout d'abord recherchée par l'expression <em>plateau.indexOf(pion_actuel)</em>. Ce numéro de case est accolé au <em>zone</em> à l'aide d'une template-string, puis cette string est évaluée en tant que variable par la fonction eval(). Finalement, il est vérifié que la case sélectionne se trouve dans cette zone avec la méthode <em>includes</em>.
+Dans cette condition, l'emplacement du pion est tout d'abord recherchée par l'expression <em>plateau.indexOf(pion_actuel)</em>. Ce numéro de case est accolé au <em>zone</em> à l'aide d'une template-string, puis cette string est évaluée en tant que variable par la fonction <em>eval()</em>. Finalement, il est vérifié que la case sélectionnée se trouve dans cette zone avec la méthode <em>includes</em>.
 
-Le deuxième rôle de <em>joue(numeroCase)</em> est de contrôler si un moulin a été formé immédiatement après le fin du tour du joueur (c'est-à-dire lorsqu'il aura poser son pion). Ce contrôle ne s'effectue qu'à partir du cinquième tour, étant donné qu'il est impossible de former un moulin avant.
-Pour ce faire, toutes les configurations possibles de moulin (présentées dans <em>moulins</em>) sont parcourues et il est à chaque fois vérifié si les pions présents sur ces triplets sont identiques. Si c'est effectivement le cas, il est contrôlé que le moulin vient d'être formé, donc qu'il ne se situe pas encore dans la liste <em>moulinsPlateau</em>. Si ce n'est pas le cas, les contrôles continuent jusqu'à la fin de la liste des triplets et la configuration est indiqué comme vide dans <em>moulinsPlateau</em>. Ceci permet de prendre en compte le cas où un moulin est ouvert, et donc potentiellement à nouveau formable.
+Le deuxième rôle de <em>joue(numeroCase)</em> est de contrôler si un moulin a été formé immédiatement après le fin du tour du joueur (c'est-à-dire lorsqu'il aura posé son pion). Ce contrôle ne s'effectue qu'à partir du cinquième tour, étant donné qu'il est impossible de former un moulin avant, puisque les joueurs n'auront que deux pions sur le plateau.
 
-S'il y a effectivement un moulin, un message est affiché au-dessus du plateau. Le moulin est enregistrer dans <em>moulinsPlateau</em>, le type de moulin dans <em>typeMoulin</em> et le nombre de mouvements sans prise est remis à zéro.
-La fonction <em>listePossible</em> permet de créer la liste des pions qu'il sera possible d'éliminer à l'adversaire, ceux qui ne sont dans aucun moulin. Si tous les pions sont dans des moulins, tous les pions adverses sur le plateau sont éliminables. Les éléments présents dans cette liste sont animés pour être plus facilement repérables. 
+Pour ce faire, toutes les configurations possibles de moulin (présentées dans <em>moulins</em>) sont parcourues et il est à chaque fois vérifié si les pions présents sur ces triplets sont identiques. Si c'est effectivement le cas, il est contrôlé que le moulin vient d'être formé; par conséquent qu'il n'existe pas encore dans la liste <em>moulinsPlateau</em> à l'emplacement correspondant. Si les pions des cases des triplets sont différents, les contrôles continuent jusqu'à la fin de la liste des triplets et la configuration est indiqué comme vide dans <em>moulinsPlateau</em>. Ceci permet de prendre en compte le cas où un moulin est ouvert, et donc potentiellement à nouveau formable.
+
+S'il y a effectivement un moulin, un message est affiché au-dessus du plateau. Le moulin est enregistré dans <em>moulinsPlateau</em>, le type de moulin dans <em>typeMoulin</em> et le nombre de mouvements sans prise est remis à zéro.
+
+La fonction <em>listePossible</em> permet de créer la liste des pions qu'il sera possible d'éliminer à l'adversaire, ceux qui ne sont dans aucun moulin.(Si tous les pions sont dans des moulins, tous les pions adverses sur le plateau sont éliminables.)
+
+Afin de créer cette liste, il est tout d'abord plus simple de créer la liste des pions qu'il n'est pas possible de supprimer: c'est-à-dire les pions formant un moulin.
+
+```{literalinclude} /src/jeu.js
+:language: css
+:caption: /src/jeu.js
+:linenos: true
+:lines: 407-428
+```
+
+Pour ce faire, il suffit de parcourir la liste <em>moulinsPlateau</em>, si un emplacement contient un moulin adversaire (donc pas du type du moulin qui vient d'être créé), les pions situés sur les cases du triplet correspondant sont ajouté dans la liste <em>intouchable</em>, qui sera finalement retournée.
+
+Les éléments présents dans cette liste sont animés pour être plus facilement repérables. 
 
 L'animation est réalisée en CSS. 
 

@@ -6,7 +6,7 @@ Le site est construit selon l'architecture ci-dessous.
 
 ```{figure} images/Architecture.png
 ---
-width: 100%
+width: 60%
 ---
 Architecture du site
 ```
@@ -18,7 +18,7 @@ Lors de la création d'une nouvelle partie, deux paramètres de jeu peuvent êtr
 
 ```{figure} images/options.png
 ---
-width: 100%
+width: 60%
 ---
 Options de création de partie
 ```
@@ -33,7 +33,7 @@ Lorsqu'il y a un moulin, les pions qu'il est possible d'éliminer sont entourés
 
 ```{figure} images/moulin.png
 ---
-width: 100%
+width: 40%
 ---
 Situation lors d'un moulin
 ```

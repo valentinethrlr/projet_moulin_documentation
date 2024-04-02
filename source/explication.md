@@ -20,7 +20,7 @@ Pour la partie de programmation, un numéro a été attribué à chaque case, en
 
 ```{figure} images/plateau.png
 ---
-width: 100%
+width: 40%
 ---
 Numérotation des cases
 ```
@@ -84,7 +84,7 @@ La figure ci-dessous illustre la <em>zone0</em> et la <em>zone19</em>.
 
 ```{figure} images/zones.png
 ---
-width: 100%
+width: 40%
 ---
 Exemples de zones: zone0 et zone19
 ```
@@ -106,7 +106,7 @@ Pour illustrer ceci, voici un exemple concret d'un instant de partie:
 
 ```{figure} images/situationParticuliere.png
 ---
-width: 100%
+width: 40%
 ---
 Instant de partie
 ```
@@ -257,7 +257,7 @@ L'avantage est que le client et le serveur pourront ensuite s'envoyer des messag
 
 ```{figure} images/websocket-handshake.png
 ---
-width: 100%
+width: 40%
 ---
 WebSocket en schéma, tiré de {cite:p}`socket_page2`
 ```

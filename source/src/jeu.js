@@ -135,7 +135,6 @@ function tourJoue() {
 
     tour ++
 
-
     if (tour % 2 == 1) {
         joueur_actuel = 'b'
         autre_joueur = 'n'
@@ -147,7 +146,6 @@ function tourJoue() {
             timer(tempsb)    
         }
         
-
     } else if (tour % 2 == 0) {
         joueur_actuel = 'n'
         autre_joueur = 'b'
@@ -156,7 +154,6 @@ function tourJoue() {
             clearInterval(chronometre)
             timer(tempsn)
         }
-        
     }   
 }
 

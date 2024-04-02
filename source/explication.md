@@ -2,11 +2,11 @@
 
 # Explication du fonctionnement du code
 
-Le back-end se compose de deux parties. Il y a d'une part les fichiers qui s'occupent des parties en local, rédigés en JavaScript, et d'autre part ceux qui s'occupent des parties en ligne, également en JavaScript et en utilisant la librairie <em>socket.\io</em>.
+Le back-end se compose de deux parties. Il y a d'une part les fichiers qui s'occupent des parties en local, rédigés en JavaScript, et d'autre part ceux qui s'occupent des parties en ligne, également en JavaScript et en utilisant la librairie <em>socket.io</em>.
 
 Le front-end quant à lui est rédigé en HTML et CSS.
 
-## Caractéristique du serveur
+## Caractéristiques du serveur
 
 Ce projet est hébergé sur un serveur Dell Poweredge. Celui-ci contient 10 HDD sur lesquels sont stocké les fichiers du site, ainsi que 2 SSD sur lesquels le système d'exploitation est installé.
 
@@ -14,9 +14,9 @@ Ce projet est hébergé sur un serveur Dell Poweredge. Celui-ci contient 10 HDD 
 ## Le plateau
 
 Le plateau a été dessiné sur https://www.drawio.com/, puis converti en fichier svg. L'avantage est qu'il s'agit d'un format vectoriel, c'est-à-dire que l'image est stockée via des formules mathématiques qui modélisent les différents points et lignes dans une grille.
-Il n'y a donc pas de perte de résolution lors d'agrandissements ou de réductions de l'image. {cite:p}`format_svg`
+Il n'y a donc pas de perte de résolution lors de l'agrandissement ou de la réduction de l'image. {cite:p}`format_svg`
 
-Pour la partie de programmation, un numéro a été attribué à chaque case, en suivant le schéma ci-dessous:
+Dans le code, un numéro a été attribué à chaque case, en suivant le schéma ci-dessous:
 
 ```{figure} images/plateau.png
 ---
@@ -68,7 +68,7 @@ Voici le code HTML qui permet de réaliser cela:
 :lines: 3-15
 ```
 
-Les fonctions <em>duree(t)</em> et <em>couleur(c)</em> enregistre ensuite les options choisies dans des variables globales: <em>dureeJoueur</em> et <em>couleurJoueur</em>. 
+Les fonctions <em>duree(t)</em> et <em>couleur(c)</em> enregistrent ensuite les options choisies dans des variables globales: <em>dureeJoueur</em> et <em>couleurJoueur</em>. 
 
 Si une de ces deux options n'a pas été déterminée par le créateur de la partie, un message d'erreur s'affiche sur l'écran.
 
@@ -76,9 +76,9 @@ Si une de ces deux options n'a pas été déterminée par le créateur de la par
 
 Afin de faciliter l'implémentation du jeu, plusieurs variables globales ont été définies.
 
-Tout d'abord, la liste <em>plateau</em> modélise le plateau à chaque instant du jeu, en enregistrant la position des pions qui s'y trouve. Dans cette liste, l'élément à l'index <em>n</em> correspond au pion se trouvant sur la case de numéro d'identification <em>n</em>.
+Tout d'abord, la liste <em>plateau</em> modélise le plateau à chaque instant du jeu, en enregistrant la position des pions qui s'y trouvent. Dans cette liste, l'élément à l'index <em>n</em> correspond au pion se trouvant sur la case de numéro d'identification <em>n</em>.
 
-Les déplacements possibles sur le plateau d'une case à une autre sont modélisés par toutes les variables zone-<em>n</em>. Il s'agit de listes, comprenant tous les numéros des cases sur lesquels il est possible de se déplacer à partir de la case <em>n</em>.
+Les déplacements possibles sur le plateau d'une case à une autre sont modélisés par toutes les variables zone-<em>n</em>. Il s'agit de listes, comprenant tous les numéros des cases sur lesquelles il est possible de se déplacer à partir de la case <em>n</em>.
 
 La figure ci-dessous illustre la <em>zone0</em> et la <em>zone19</em>.
 
@@ -100,7 +100,7 @@ Voici ces zones dans le fichier <em>jeu.js</em>:
 
 La liste <em>moulins</em> présente tous les triplets de cases sur lesquels il est possible d'avoir un moulin. Nous constatons donc qu'il y a au total seize dispositions de moulin différentes.
 
-Cette liste est liée à <em>moulinsPlateau</em>, qui à une position <em>i</em> indique si le triplet de cases à l'index <em>i</em> de <em>moulins</em> est occupée par un moulin. Ceci permet de garder en mémoire les moulins présents sur le plateau même lorsqu'ils ont été créés durant les tours de jeu antérieur, sans qu'ils soient détectés une deuxième fois à chaque nouveau tour.
+Cette liste est liée à <em>moulinsPlateau</em>, qui à une position <em>i</em> indique si le triplet de cases à l'index <em>i</em> de <em>moulins</em> est occupé par un moulin. Ceci permet de garder en mémoire les moulins présents sur le plateau même lorsqu'ils ont été créés durant les tours de jeu antérieurs, sans qu'ils ne soient détectés à chaque nouveau tour.
 
 Pour illustrer ceci, voici un exemple concret d'un instant de partie:
 
@@ -120,7 +120,7 @@ La liste <em>moulin</em> se présente comme il suit:
 :lines: 43
 ```
 
-Nous constatons donc que les deux moulins présents sur le plateau correspondent aux triplets aux index 1 et 8.
+Nous constatons donc que les deux moulins présents sur le plateau correspondent aux triplets des index 1 et 8.
 
 La liste <em>moulinsPlateau</em> est par conséquent:
 
@@ -131,18 +131,25 @@ La liste <em>moulinsPlateau</em> est par conséquent:
 :lines: 574
 ```
 
-Ensuite, la variable <em>typeMoulin</em> prend comme valeur <em>b</em> ou <em>n</em> si moulin vient d'être formé sur le plateau (et qu'il est soit blanc soit noir) ou <em>null</em> si aucun nouveau moulin n'a été détecté.
+Ensuite, la variable <em>typeMoulin</em> prend comme valeur <em>b</em> ou <em>n</em> si un moulin vient d'être formé sur le plateau (et qu'il est soit blanc soit noir) et <em>null</em> si aucun nouveau moulin n'a été détecté.
 
-Les deux variables <em>nbBElimine</em> et <em>nbNElimine</em> sauvegarde le nombre de pions blancs, respectivement noirs, qui ont déjà été éliminés durant la partie.
+Les deux variables <em>nbBElimine</em> et <em>nbNElimine</em> sauvegardent le nombre de pions blancs, respectivement noirs, qui ont déjà été éliminés durant la partie.
 
-La variable <em>mouvementsSansPrise</em> permet ensuite de prendre en compte la règle du jeu qui stipule que lorsqu'il y a 50 mouvements sans aucune prise, la partie est considérée comme nulle.
+La variable <em>mouvementsSansPrise</em> permet ensuite de prendre en compte la règle du jeu qui stipule que lorsqu'il y a 50 mouvements sans aucune prise, la partie est considérée comme nulle. Elle sauvegarde donc le nombre de tours consécutifs sans formation de moulin.
 
 En ce qui concerne le déroulement du jeu, la variable globale <em>joueur_actuel</em> désigne le joueur qui doit jouer pendant le tour actuel, tandis que <em>autre_joueur</em> désigne le joueur en attente.
 
 
 #### <em>tourJoue()</em>
 
-Cette fonction permet d'incrémenter les tours durant la partie. Lorsqu'un des joueurs a terminé son action de jeu, c'est l'autre qui devient le <em>joueur_actuel</em>. Une indication avec la couleur du joueur qui doit réaliser un mouvement s'affiche alors au-dessus du plateau. Finalement, si une option de durée de jeu a été choisie, le chronomètre du joueur suivant se déclenche. Les variables <em>tempsb</em> et <em>tempsn</em> indiquent le temps de jeu restant du joueur aux pions blancs, respectivement noirs.
+```{literalinclude} /src/jeu.js
+:language: html
+:caption: /src/jeu.js
+:linenos: true
+:lines: 129-158
+```
+
+Cette fonction permet d'incrémenter les tours durant la partie. (Le compte des tours se fait par la variable globale <em>tour</em>.) Lorsqu'un des joueurs a terminé son action de jeu, c'est l'autre qui devient le <em>joueur_actuel</em>. Une indication avec la couleur des pions du joueur qui doit réaliser un mouvement s'affiche alors au-dessus du plateau. Finalement, si une option de durée de jeu a été choisie, le chronomètre du joueur suivant se déclenche. Les variables <em>tempsb</em> et <em>tempsn</em> indiquent le temps de jeu restant du joueur aux pions blancs, respectivement noirs.
 
 La fonction de chronométrage, <em>timer(temps)</em> prend donc en paramètre le temps de jeu restant du joueur et décrémente toutes les secondes cette variable grâce à la fonction JS <em>setInterval()</em>. Lors d'une décrémentation, l'horloge présente sur la page de jeu et implémentée en HTML est également modifiée.
 
@@ -159,7 +166,7 @@ Lors des 18 premiers tours de jeu (phase de mise en place), elle permet aux joue
 :language: js
 :caption: /src/jeu.js
 :linenos: true
-:lines: 178-195
+:lines: 175-192
 ```
 
 Cette partie du code s'appuie principalement sur le choix des noms d'id des pions dans le code HTML. Ils suivent la construction <em>p</em> + <em>b</em> ou <em>n</em> (en fonction de la couleur du pion) + un numéro d'identification.
@@ -176,10 +183,12 @@ En revanche, lors des tours "normaux", une condition vérifie que la case choisi
 :language: js
 :caption: /src/jeu.js
 :linenos: true
-:lines: 215-221
+:lines: 212-218
 ```
 
 Dans cette condition, l'emplacement du pion est tout d'abord recherchée par l'expression <em>plateau.indexOf(pion_actuel)</em>. Ce numéro de case est accolé au <em>zone</em> à l'aide d'une template-string, puis cette string est évaluée en tant que variable par la fonction <em>eval()</em>. Finalement, il est vérifié que la case sélectionnée se trouve dans cette zone avec la méthode <em>includes</em>.
+
+Après chaque déplacement, il est vérifié que le joueur suivant puisse lui aussi faire un mouvement et qu'il ne soit pas bloqué. Si c'est le cas, il a perdu la partie. Pour ce faire, la fonction <em>controleMouvementPossible()</em> est appelée. Elle vérifie simplement qu'au moins une des cases de des zone des cases sur lesquelles se trouvent ses pions soit libre.
 
 Le deuxième rôle de <em>joue(numeroCase)</em> est de contrôler si un moulin a été formé immédiatement après le fin du tour du joueur (c'est-à-dire lorsqu'il aura posé son pion). Ce contrôle ne s'effectue qu'à partir du cinquième tour, étant donné qu'il est impossible de former un moulin avant, puisque les joueurs n'auront que deux pions sur le plateau.
 
@@ -195,7 +204,7 @@ Afin de créer cette liste, il est tout d'abord plus simple de créer la liste d
 :language: css
 :caption: /src/jeu.js
 :linenos: true
-:lines: 407-428
+:lines: 404-425
 ```
 
 Pour ce faire, il suffit de parcourir la liste <em>moulinsPlateau</em>, si un emplacement contient un moulin adversaire (donc pas du type du moulin qui vient d'être créé), les pions situés sur les cases du triplet correspondant sont ajouté dans la liste <em>intouchable</em>, qui est finalement retournée.
@@ -206,7 +215,7 @@ Ensuite, pour créer la liste des pions qu'il est possible de supprimer, nous pr
 :language: css
 :caption: /src/jeu.js
 :linenos: true
-:lines: 431-455
+:lines: 428-452
 ```
 
 Les éléments présents dans liste des pions possibles sont animés pour être plus facilement repérables. 
@@ -401,7 +410,7 @@ Voici les premières lignes de la fonction <em>joue(numeroCase)</em> dans <em>je
 :language: js
 :caption: /src/jeu.js
 :linenos: true
-:lines: 163, 172
+:lines: 160, 169
 ```
 
 #### Déroulement du jeu côté client

@@ -445,7 +445,7 @@ Les deux premières conditions servent à vérifier que la partie à supprimer a
 
 La première difficulté rencontrée durant ce projet a été la mise en place d'un algorithme de jeu. Le problème principal était qu'il fallait bien réfléchir à quand faire une vérification de la présence de moulins, comment la faire automatiquement et de manière générale dans quel ordre il fallait permettre aux joueurs de faire des actions. La solution a donc été de créer deux fonctions principales, une qui s'occupe de la sélection des cases et l'autre de la sélection des pions, et de les faire communiquer par l'utilisation de variables globales.
 
-La deuxième difficulté a été de concilier les parties en ligne et les parties en local. Le risque était constamment qu'une des fonctions appelée ne soit pas définie, car cherchée dans le mauvais fichier, ou qu'une fonction indésirée s'exécute. La solution a donc été de de faire de nombreux copier-coller de fonction des parties en local dans un deuxième fichier spécifique aux parties en ligne. Cette pratique n'est certes pas optimale, mais permet de régler ce problème.
+La deuxième difficulté a été de concilier les parties en ligne et les parties en local. Le risque était constamment qu'une des fonctions appelée ne soit pas définie, car cherchée dans le mauvais fichier, ou qu'une fonction indésirée s'exécute. La solution a donc été de faire de nombreux copier-coller des fonctions des parties en local dans un deuxième fichier spécifique aux parties en ligne. Cette pratique n'est certes pas optimale, mais permet de régler ce problème.
 
 
 

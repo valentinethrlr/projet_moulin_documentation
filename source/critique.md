@@ -12,4 +12,7 @@ Par ailleurs, il faudrait dans la mesure du possible éviter toutes les utilisat
 
 Afin d'étendre encore ce projet, il serait finalement possible de permettre aux joueurs de faire des parties en ligne contre des adversaires choisis au hasard et souhaitant également faire une partie à ce moment-là, ou de faire des parties contre l'ordinateur. La première option demanderait une gestion supplémentaire des joueurs connectés au site et voulant commencer une partie. La deuxième option quant à elle impliquerait potentiellement l'implication d'une IA. 
 
-En conclusion, ce projet était une bonne mise en pratique des bases des langages JS, HTML et CSS, ainsi que de la programmation orientée objet et des technologies utilisant les webSocket. Il serait en revanche possible par la suite de le pousser encore plus loin et de le rendre plus professionnel. Le facteur qui a empêché ceci pour ce travail est que le temps qu'il aurait fallu y consacrer aurait très largement dépassé celui prévu dans le cadre d'un projet d'OC.
+# Conclusion
+
+En conclusion, ce projet était une bonne mise en pratique des bases des langages JS, HTML et CSS, ainsi que de la programmation orientée objet et des technologies utilisant les webSocket. Cela m'a également permis de découvrir le fonctionnement d'un serveur. 
+Il serait en revanche possible par la suite de pousser ce travail encore plus loin et de le rendre plus professionnel. Le facteur qui a empêché ceci est que le temps qu'il aurait fallu y consacrer aurait très largement dépassé celui prévu dans le cadre d'un projet d'OC.

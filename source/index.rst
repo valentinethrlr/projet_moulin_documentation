@@ -8,21 +8,12 @@ Jeu du moulin
     :maxdepth: 2
     :caption: Table des matières
 
-    plan.md
     presentation.md
     manuel.md
     explication.md
     critique.md
     appris.md
     references.rst
-
-
-..  toctree::
-    :maxdepth: 2
-    :caption: Tutoriel Sphinx
-
-    tutoriel-sphinx/index.rst
-
 
 ..
     Indices and tables

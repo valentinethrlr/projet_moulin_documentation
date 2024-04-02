@@ -166,7 +166,7 @@ function joue(numeroCase) {
    * @param {number} *numeroCase la case sélectionnée
    */
     
-    if (enLigne == false) {
+    if (!(enLigne)) {
 
         if (tour == 1) {
             document.getElementById("indication").innerText = ""
@@ -289,7 +289,7 @@ function selectionne(pionId) {
    * @param {string} *pionId le pion sélectionné
    */
 
-    if (enLigne == false) {
+    if (!(enLigne)) {
 
     //contrôle s'il y a eu moulin et élimine le pion sélectionné
     if (typeMoulin == "b" || typeMoulin == "n") {

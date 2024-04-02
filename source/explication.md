@@ -239,7 +239,7 @@ Cette fonction gère tout ce qui concerne la sélection d'un pion. Elle est appe
 
 En premier lieu, la fonction contrôle s'il y a eu un moulin (c'est-à-dire si la variable <em>typeMoulin</em> a comme valeur soit <em>b</em> soit <em>n</em>), afin de permettre à l'utilisateur de supprimer un pion de son adversaire. 
 
-Lorsqu'il sélectionne alors un pion première condition vérifiée est qu'il soit bien possible de supprimer le pion sélectionné. Pour ce faire, nous pouvons tirer profit de la liste <em>pionsPossibles</em> qui avait été créée dans la fonction <em>joue(case)</em> lorsque le moulin avait été repéré, afin de mettre en évidence les pions qu'il est justement possible de supprimer. 
+Lorsqu'il sélectionne un pion, première condition vérifiée est qu'il soit bien possible de supprimer le pion sélectionné. Pour ce faire, nous pouvons tirer profit de la liste <em>pionsPossibles</em> qui avait été créée dans la fonction <em>joue(case)</em> lorsque le moulin avait été repéré, afin de mettre en évidence les pions qu'il est justement possible de supprimer. 
 
 Une autre variable globale initialisée dans <em>joue(case)</em> est également réutilisée ici. Il s'agit de la situation particulière où tous les pions adverses se trouvent dans un moulin, et qu'il est par conséquent possible d'éliminer n'importe quel pion. Dans ce cas, la variable <em>supprimeDansMoulin</em> prend la valeur <em>true</em>. Tous les moulins contenant le pion éliminé seront alors supprimés de la liste <em>moulinsPlateau</em>.
 
@@ -273,7 +273,7 @@ WebSocket en schéma, tiré de {cite:p}`socket_page2`
 
 Afin d'établir cette connexion, il y a tout d'abord une phase dite de "handshake".
 
-Du côté du serveur, un port doit être ouvert. Pour ce projet, il s'agit du port 25565. (La raison pour cela est que le propriétaire du serveur m'a indiqué qu'il était libre). Ensuite, le serveur est mis "sur écoute".
+Du côté du serveur, un port doit être ouvert. Pour ce projet, il s'agit du port 25565. (La raison pour cela est que le propriétaire du serveur m'a indiqué qu'il était libre). Le serveur est alors mis "sur écoute".
 
 Ensuite, le client envoie une première requête (une requête HTTP) vers ce port, pour demander une connection. Si le serveur accepte cette demande, une liaison est établie entre les deux. A partir de cet instant, des messages transiteront entre eux automatiquement, sans autre requête.
 
@@ -306,7 +306,7 @@ Enfin d'établir le lien, cette ligne de code est nécessaire du côté client:
 :lines: 28
 ```
 
-Une fois le <em>handshake</em> complété, la syntaxe pour envoyer un message est du côté client est:
+Une fois le <em>handshake</em> complété, la syntaxe pour envoyer un message du côté client est:
 
 ```{literalinclude} /src/socket.js
 :language: js
@@ -333,7 +333,7 @@ Pour recevoir un message, l'idée est la même côté client et côté serveur, 
 :linenos: true
 :lines: 40-42
 ```
-Pour que ce bloc soit exécuté, il faut simplement que le nom de l'événement attendu corresponde à celui de l'événement envoyé. 
+Pour que ce bloc soit exécuté, il faut que le nom de l'événement attendu corresponde à celui de l'événement envoyé. 
 
 
 ### Programmation
@@ -342,13 +342,13 @@ Le fichier d'entrée côté client est <em>ligne.js</em> qui se trouve dans le d
 
 Globalement, l'algorithme de jeu est le même que pour les parties en local. Une grande partie du code a donc été repris du fichier <em>jeu.js</em> et mis dans la classe du fichier <em>PartieMoulin.js</em>. Pour des raisons de sécurité, il n'était pas possible d'avoir un fichier commun avec cette partie du code, le but étant de séparer rigoureusement ce qui concerne le client de ce qui concerne le serveur.
 
-La principale différence est que tous les "calculs" se font sur le serveur, qui ne fait ensuite qu'envoyer ce qui doit être affiché sur les écrans des joueurs. Les clients quant à eux envoient les identifiants des cases et des pions sélectionnés.
+La principale différence est que tous les "calculs" se font sur le serveur, qui ne fait ensuite que d'envoyer ce qui doit être affiché sur les écrans des joueurs. Les clients quant à eux envoient les identifiants des cases et des pions sélectionnés au serveur.
 
 #### Variables globales de <em>moulin.js</em>
 
 Ce fichier ne contient en réalité qu'une classe, qui sera exporté dans le fichier <em>index.js</em> du dossier <em>nodeJs</em>.
 
-Cette classe sauvegarde toutes les parties dans l'objet <em>parties</em>, avec l'id de la partie comme clé et un objet <em>PartieMoulin</em> comme valeur.
+Cette classe sauvegarde toutes les parties dans l'objet <em>parties</em>, avec l'id de la partie comme clé et une instance de <em>PartieMoulin</em> comme valeur.
 
 La deuxième variable globale est l'objet <em>joueurs</em>, qui stocke les identifiants des clients comme clé et l'identifiant de la partie à laquelle ils jouent comme valeur.
 
@@ -363,7 +363,7 @@ Lorsque le client clique sur le bouton <em>Créer une partie en ligne</em>, la f
 :linenos: true
 :lines: 46-52
 ```
-Nous constatons qu'ici un message est envoyé vers le serveur sous le format JSON. C'est ce même format qui sera utilisé dans tout le code. Le "but" décrit le type d'événement spécifique, ici, il s'agit de la création d'un id de partie. Ensuite, les options de durée et de couleur du créateur sont indiqués. Nous pouvons remarquer qu'il s'agit des variables globales du fichier <em>jeu.js</em>. Nous pouvons utiliser celles-ci, car les deux fichiers JS sont liés à la même page HTML.
+Nous constatons qu'ici un message est envoyé vers le serveur sous le format JSON. C'est ce même format qui sera utilisé dans tout le code. Le "but" décrit le type d'événement spécifique. Dans ce cas, il s'agit de la création d'une id de partie. Ensuite, les options de durée et de couleur du créateur sont indiquées. Nous pouvons remarquer qu'il s'agit des variables globales du fichier <em>jeu.js</em>. Nous pouvons utiliser celles-ci, car les deux fichiers JS sont liés à la même page HTML.
 
 Le serveur récupère le message comme il suit:
 
@@ -379,12 +379,12 @@ Cet adversaire pourra joindre la partie en indiquant ce même identifiant après
 
 #### Classe <em>PartieMoulin</em>
 
-De manière générale, les variables d'instance sont les mêmes que les variables globales dans les parties en local. La seul différence est qu'il faut dans le cas d'une partie en ligne connaître la couleur des pions de chaque utilisateur. Nous avons donc <em>couleur1</em> et <em>couleur2</em>, qui  indiquent la couleur du joueur 1, respectivement du joueur 2. La variable <em>joueur1</em> donne l'identifiant <em>socket.\io</em> du créateur de la partie et <em>joueur2</em> de l'utilisateur qui l'a rejoint. 
+De manière générale, les variables d'instance sont les mêmes que les variables globales dans les parties en local. La seul différence est qu'il faut dans le cas d'une partie en ligne connaître la couleur des pions de chaque utilisateur. Nous avons donc <em>couleur1</em> et <em>couleur2</em>, qui  indiquent la couleur des pions du joueur 1, respectivement du joueur 2. La variable <em>joueur1</em> donne l'identifiant <em>socket.io</em> du créateur de la partie et <em>joueur2</em> de l'utilisateur qui l'a rejoint. 
 Finalement, les variables <em>actuel_joueur</em> et <em>autre_joueur</em> permettent d'indiquer quel joueur a le droit de jouer et lequel doit attendre, en prenant à tour de rôle les valeurs <em>1</em> et <em>2</em>.
 
-Les méthodes sont globalement les mêmes que les fonctions de <em>jeu.js</em> et sont nommées à l'identique. Néanmoins, au lieu de changer directement ce qui est affiché à l'écran des utilisateurs au cours de la partie, un message est envoyé aux clients avec les informations nécessaire pour qu'eux-même puissent modifier les pages web.
+Les méthodes sont globalement les mêmes que les fonctions de <em>jeu.js</em> et sont nommées à l'identique. Néanmoins, au lieu de changer directement ce qui est affiché à l'écran des utilisateurs au cours de la partie, un message est envoyé aux clients avec les informations nécessaires pour qu'eux-même puissent modifier les pages web.
 
-Par exemple, lors du déplacement d'un pion, les messages suivant sont envoyés:
+Par exemple, lors du déplacement d'un pion, les messages suivants sont envoyés:
 
 ```{literalinclude} /src/socket.js
 :language: js
@@ -402,7 +402,7 @@ Le premier est à destination du premier joueur et le deuxième du deuxième jou
 ```
 Nous constatons que le mouvement est tout d'abord effectué sur le plateau (fonction <em>mouvementLigne</em>, qui fonctionne de la même manière que la fonction <em>mouvement</em> de <em>jeu.js</em>). Ensuite, en fonction du joueur, il sera indiqué si c'est à lui de jouer ou s'il doit maintenant attendre que son adversaire joue.
 
-Pour faire passer des messages du client au serveur et afin d'éviter d'envoyer inutilement des informations lorsqu'une partie est jouée en local, une deuxième fonction <em>joueLigne()</em> est ajoutée aux "onclick" des pions et <em>selectionneLigne()</em> à ceux des cases. Bien que cette pratique ne soit pas très optimale, elle est tout de même pratique dans ce cas précis, puisque cela évite de faire basculer les clients vers une autre page HTML et par conséquent de changer leur <em>socket.id</em> auprès du serveur. Par ailleurs, il est assuré que durant une partie en ligne, les fonctions relatives aux parties locales ne seront pas exécutées, puisqu'une condition <em>enLigne</em> devrait être vérifiée. Or cette variable ne prend la valeur <em>true</em> que si le bouton <em>Jouer sur l'appareil</em> a été choisi. 
+Pour faire passer des messages du client au serveur et afin d'éviter d'envoyer inutilement des informations lorsqu'une partie est jouée en local, une deuxième fonction <em>joueLigne()</em> est ajoutée aux "onclick" des pions et <em>selectionneLigne()</em> à ceux des cases. Bien que cette pratique ne soit pas très optimale, elle est tout de même pratique dans ce cas précis, puisque cela évite de faire basculer les clients vers une autre page HTML et par conséquent de changer leur <em>socket.id</em> auprès du serveur. Par ailleurs, il est assuré que durant une partie en ligne, les fonctions relatives aux parties locales ne seront pas exécutées, puisqu'une condition <em>enLigne</em> devrait être vérifiée. Cependant, cette variable ne prend la valeur <em>true</em> que si le bouton <em>Jouer sur l'appareil</em> a été choisi. 
 
 Voici les premières lignes de la fonction <em>joue(numeroCase)</em> dans <em>jeu.js</em> qui illustre cette condition.
 
@@ -417,7 +417,7 @@ Voici les premières lignes de la fonction <em>joue(numeroCase)</em> dans <em>je
 
 Le rôle du client sera donc simplement de récupérer les informations reçues du serveur et de réagir de manière appropriée en fonction du "but" du message envoyé.
 
-C'est principalement ces différents cas qui sont indiqués dans le fichier <em>ligne.js</em>. Les réactions suivent la même logique que celle des parties en local, qui ont été expliquées précédemment. 
+C'est principalement ces différents cas qui sont indiqués dans le fichier <em>ligne.js</em>. Les réactions suivent la même logique que celle des parties en local, qui a été décrite précédemment. 
 
 
 #### Fin de partie
@@ -441,6 +441,11 @@ Cette déconnexion est détectée grâce à une propriété spécifique de la li
 Les deux premières conditions servent à vérifier que la partie à supprimer ait bel et bien été créée et la deuxième qu'un deuxième joueur ait rejoint cette partie. Ceci ne serait typiquement pas le cas si un joueur crée une partie, puis quitte la page d'attende sans qu'aucun adversaire ne l'a encore rejoint. Dans ce cas, le <em>currentPartie.joueur2</em> de la ligne 17 serait indéfini, ce qui créerait une erreur dans le code.
 
 
+## Difficultés principales
+
+La première difficulté rencontrée durant ce projet a été la mise en place d'un algorithme de jeu. Le problème principal était qu'il fallait bien réfléchir à quand faire une vérification de la présence de moulins, comment la faire automatiquement et de manière générale dans quel ordre il fallait permettre aux joueurs de faire des actions. La solution a donc été de créer deux fonctions principales, une qui s'occupe de la sélection des cases et l'autre de la sélection des pions, et de les faire communiquer par l'utilisation de variables globales.
+
+La deuxième difficulté a été de concilier les parties en ligne et les parties en local. Le risque était constamment qu'une des fonctions appelée ne soit pas définie, car cherchée dans le mauvais fichier, ou qu'une fonction indésirée s'exécute. La solution a donc été de de faire de nombreux copier-coller de fonction des parties en local dans un deuxième fichier spécifique aux parties en ligne. Cette pratique n'est certes pas optimale, mais permet de régler ce problème.
 
 
 

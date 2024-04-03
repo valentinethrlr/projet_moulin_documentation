@@ -2,6 +2,8 @@
 
 # Manuel utilisateur
 
+Pour jouer, il suffit de se rendre sur http://vgames.totifle.ch/moulin/.
+
 Le site est construit selon l'architecture ci-dessous.
 
 ```{figure} images/Architecture.png

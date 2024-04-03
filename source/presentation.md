@@ -4,7 +4,7 @@
 
 Ce projet consiste en la création d'un site web sur lequel il est possible de faire des parties de moulin.
 
-L'intention à la base de ce projet est de donner la possibilité à n'importe qui de s'occuper durant une phase d'attente, en ayant seulement un téléphone portable ou un ordinateur à disposition. Cette personne peut alors se rendre sur http://vgames.totifle.ch/ afin de jouer au moulin. Ce jeu se prête bien à une courte période d'attente, puisqu'une partie dure en principe entre 5 et 20 minutes.
+L'intention à la base de ce projet est de donner la possibilité à n'importe qui de s'occuper durant une phase d'attente, en ayant seulement un téléphone portable ou un ordinateur à disposition. Cette personne peut alors se rendre sur http://vgames.totifle.ch/moulin/ afin de jouer au moulin. Ce jeu se prête bien à une courte période d'attente, puisqu'une partie dure en principe entre 5 et 20 minutes.
 
 Sur ce site, il est possible de faire des parties en local sur l'appareil ou en ligne avec un ami. Par ailleurs, il n'est pas nécessaire de créer un compte utilisateur et il n'y a pas de système de points ou de classement. L'idée était de permettre à n'importe qui de faire spontanément une partie de moulin. Ceci ajoute donc un aspect convivial au jeu, puisqu'il n'y a pas de compétition, il s'agit simplement de passer un bon moment entre amis.
 

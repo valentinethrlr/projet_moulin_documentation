@@ -14,5 +14,5 @@ Afin d'étendre encore ce projet, il serait finalement possible de permettre aux
 
 # Conclusion
 
-En conclusion, ce projet était une bonne mise en pratique des bases des langages JS, HTML et CSS, ainsi que de la programmation orientée objet et des technologies utilisant les webSocket. Cela m'a également permis de découvrir le fonctionnement d'un serveur. 
+En conclusion, ce projet était une bonne mise en pratique des bases des langages JS, HTML et CSS, ainsi que de la programmation orientée objet et des technologies utilisant les webSockets. Cela m'a également permis de découvrir le fonctionnement d'un serveur. 
 Il serait en revanche possible par la suite de pousser ce travail encore plus loin et de le rendre plus professionnel. Le facteur qui a empêché ceci est que le temps qu'il aurait fallu y consacrer aurait très largement dépassé celui prévu dans le cadre d'un projet d'OC.
